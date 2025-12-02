@@ -1,0 +1,46 @@
+services: # group of containers to run
+    backend: # container 
+        build: ./backend # where docker looks for the dockerfile and uses it to build an image
+        container_name: portfolio-backend # container name that shows up when "docker ps" command is run, displaying currently running containers
+        volumes:
+            - ./backend:/var/www/html # left side "./backend" is the real location on the machine, right side "/var/www/html" is the folder inside the container
+        ports:
+            - "9000:9000" # left - machines port, right - containers port
+        depends_on: # everything under "depends_on" tells docker to run them before this "backend" container. So mysql and redis will run before backend
+            - mysql
+            - redis
+        
+    frontend:
+        build: ./frontend
+        container_name: portfolio-frontend
+        volumes:
+            - ./frontend:/usr/src/app
+        ports:
+            - "3000:3000"
+        depends_on:
+            - backend
+
+    mysql:
+        image: mysql:8.0 # builds an image of 8.0 version mysql on docker hub
+        container_name: portfolio-mysql
+        env_file:
+            - .env 
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+        ports:
+            - "3307:3306"
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+    redis:
+        image: redis:7-alpine
+        container_name: portfolio-redis
+        ports:
+            - "6379:6379"
+
+volumes:
+    mysql_data:
