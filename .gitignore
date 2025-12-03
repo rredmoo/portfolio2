@@ -1,2 +1,17 @@
+# root files
 .env
+
+# ./backend for laravel
+backend/vendor/
 backend/.env
+backend/.env.*
+backend/storage/
+backend/bootstrap/cache/
+backend/node_modules/
+backend/public/storage/
+
+#  ./frontend for vite-react
+frontend/node_modules/
+frontend/.env
+frontend/.env.*
+frontend/dist/

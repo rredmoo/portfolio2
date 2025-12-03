@@ -9,6 +9,7 @@ services: # group of containers to run
         depends_on: # everything under "depends_on" tells docker to run them before this "backend" container. So mysql and redis will run before backend
             - mysql
             - redis
+        command: php artisan serve --host=0.0.0.0 --port=9000
         
     frontend:
         build: ./frontend
@@ -16,9 +17,12 @@ services: # group of containers to run
         volumes:
             - ./frontend:/usr/src/app
         ports:
-            - "3000:3000"
+            - "5173:5173"
         depends_on:
             - backend
+        command: ["npm", "run", "dev", "--", "--host", "--port", "5173"]
+
+
 
     mysql:
         image: mysql:8.0 # builds an image of 8.0 version mysql on docker hub
