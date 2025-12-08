@@ -2,47 +2,37 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\Skill;
+use App\Http\Requests\StoreSkillRequest;
+use App\Http\Requests\UpdateSkillRequest;
 
-class SkillsController
+class SkillsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        return Skill::paginate(20);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(StoreSkillRequest $request)
     {
-        //
+        return Skill::create($request->validated());
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function show(Skill $skill)
     {
-        //
+        return $skill;
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(UpdateSkillRequest $request, Skill $skill)
     {
-        //
+        $skill->update($request->validated());
+        return $skill;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy(Skill $skill)
     {
-        //
+        $skill->delete();
+        return response()->json(null, 204);
     }
 }

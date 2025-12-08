@@ -25,9 +25,8 @@ class UpdateProjectRequest extends FormRequest
             'title' => 'sometimes|string|max:255',
             'short_description' => 'sometimes|string|max:500',
             'description' => 'sometimes|string',
-            'tech_stack' => 'sometimes|array',
+            'technologies_used' => 'sometimes|array',
             'link' => 'sometimes|url',
-            'is_featured' => 'sometimes|boolean',
             'skills' => 'sometimes|array',
             'skills.*' => 'integer|exists:skills,id',
         ];
