@@ -9,7 +9,7 @@ class Project extends Model
     # structure of a Project model
     protected $fillable = [
         'title',
-        'small_description',
+        'short_description',
         'description',
         'technologies_used',
         'link' 

@@ -6,23 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
         Schema::create('skills', function (Blueprint $table) {
-            $table->id();                                                                                       # ID
-            $table->string('title');                                                                    # title of the skill
-            $table->enum('category', ['frontend', 'backend', 'devops', 'testing', 'other']);   # category that fits the skill
-            $table->smallInteger('level');                                                              # level of that skill 
-            $table->timestamps();                                                                               # timestamp of when the skill was created
+            $table->id();
+            $table->string('name', 64);
+            $table->enum('category', ['frontend', 'backend', 'devops', 'testing', 'other']);
+            $table->unsignedTinyInteger('level'); // 0–255, safe for levels 1–10
+            $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('skills');
