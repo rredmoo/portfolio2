@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Facades\Cache;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,9 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return Project::with('skills')->paginate(3);
+        return Cache::remember('projects_list', 60, function (){
+            return Project::with('skills')->get();
+        });
     }
 
     /**
@@ -31,6 +34,8 @@ class ProjectController extends Controller
         if($request->has('skills')){
             $project->skills()->sync($request->skills);
         }
+
+        Cache::forget('projects_list');
 
         return response()->json($project->load('skills'), 201);
     }
@@ -55,7 +60,7 @@ class ProjectController extends Controller
         if($request->has('skills')){
             $project->skills()->sync($request->skills);
         }
-
+        Cache::forget('projects_list');
         return $project->load('skills');
     }
 
@@ -66,6 +71,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         $project->delete();
+        Cache::forget('projects_list');
         return response()->json(null, 204);
     }
 }
