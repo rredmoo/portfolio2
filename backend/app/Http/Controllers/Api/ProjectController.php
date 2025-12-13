@@ -15,11 +15,19 @@ class ProjectController extends Controller
      * Display a list (paginated) of all the projects
      * GET call at /api/projects
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Cache::remember('projects_list', 60, function (){
-            return Project::with('skills')->get();
+        $page = $request->query('page', 1); // If there is no filter/query, it will give page 1 by default
+        $cacheKey = "projects_page_" . $page; // to identify pages, for example projects_page_1, xxx_2 and so on
+        // Cache pages using redis, pageinated with 3 projects per page
+        return Cache::remember($cacheKey, 60, function() {
+            return Project::with('skills')->paginate(3);
         });
+        #TODO Add filters like isfeatured
+
+        // return Cache::remember('projects_list', 60, function (){
+        //     return Project::with('skills')->paginate(perPage: 3);
+        // });
     }
 
     /**
