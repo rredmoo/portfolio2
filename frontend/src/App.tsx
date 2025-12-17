@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import { getProjects } from './api/projects'
 import type { Project } from './api/types';
+import ProjectCard from './components/ProjectCard';
 
 function App() {
   const [projects, setprojects] = useState<Project[]>([]);
@@ -15,15 +16,16 @@ function App() {
   return (
         <main className="container">
       <h1>Projecets</h1>
-
+      <p>=====================================</p>
       <ul>
         {projects.map(project => (
           <li key={project.id}>
-            <h3>{project.title}</h3>
-            <p>{project.small_description}</p>
+            <ProjectCard project={project}/>
           </li>
         ))}
+
       </ul>
+      
     </main>
   )
 }

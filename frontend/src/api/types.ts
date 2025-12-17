@@ -3,7 +3,7 @@
 export interface Project {
     id: number;
     title: string;
-    small_description: string;
+    short_description: string;
     description: string;
     technologies_used: string[] | null;
     link: string | null;
