@@ -1,4 +1,21 @@
+import stylecomp from 'styled-components';
 import type { Project } from "../api/types";
+
+const Card = stylecomp.article`
+  background: #1f2933;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  h3 {
+    margin-bottom: 8px;
+    color: var(--color-primary);
+  }
+
+  p {
+    opacity: 0.85;
+  }
+`;
 
 interface ProjectCardTypes {
     project: Project;
@@ -6,7 +23,7 @@ interface ProjectCardTypes {
 
 export default function ProjectCard({ project }:ProjectCardTypes) {
   return (
-    <article>
+    <Card>
       <h3>{project.id}. {project.title}</h3>
       <p>{project.short_description}</p>
       <p>{project.description}</p>
@@ -15,7 +32,7 @@ export default function ProjectCard({ project }:ProjectCardTypes) {
       <p>{project.is_featured}</p>
       <p>{project.created_at}</p>
       <p>{project.updated_at}</p>
-    </article>
+    </Card>
   );
 }
 
