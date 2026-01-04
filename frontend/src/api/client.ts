@@ -1,26 +1,21 @@
 //  This is the file that gets called from other ./api/... files to fetches apis from 
 //  laravel and stores them as variables
 
-// Base api variable used below in apiFetcher
-const API_BASE = 'http://localhost:9000/api'
+// URL api variable used below in apiFetcher
+const API_URL = "http://localhost:9000/api";
 
-export async function apiFetch<T>(
-  endpoint: string,
+export async function apiFetch(
+  url: string,
   options: RequestInit = {}
-): Promise<T> {
-  const response = await fetch(`${API_BASE}${endpoint}`, {
+) {
+  const token = localStorage.getItem("token");
+
+  return fetch(`${API_URL}${url}`, {
+    ...options,
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...options.headers,
     },
-    ...options,
   });
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(errorText || 'API request has failed');
-  }
-
-  // returns either response in json
-  return response.json();
 }

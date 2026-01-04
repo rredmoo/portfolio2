@@ -33,6 +33,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::delete('/skills/{skill}', [SkillsController::class, 'destroy']);
 
     // user
-    Route::get('/userme', [AuthController::class, 'me']);
+    Route::get('/me', [AuthController::class, 'me']);
     Route::post('/logout', [AuthController::class, 'logout']);
 });

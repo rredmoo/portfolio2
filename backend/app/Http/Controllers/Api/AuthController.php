@@ -21,7 +21,7 @@ class AuthController extends Controller
         $user = User::where('email', $credentials['email'])->first();
 
         # 401 if not found or credentials are wrong 
-        if(!$user || Hash::check($credentials['password'], $user->password)){
+        if(!$user || !Hash::check($credentials['password'], $user->password)){
             return response()->json(['message' => 'Wrong credentials'], 401);
         }
 
