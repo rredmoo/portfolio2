@@ -28,11 +28,15 @@
 }
 
 :root {
-  --color-bg: #212121;   
-  --color-text: #e5e7eb; 
-  --color-primary: #5538f8;  
-  --color-secondary: #7c22c5; 
+  --color-bg: oklch(12.87% .004 285.83);
+  --color-bg-secondary: oklch(16.932% 0.00414 285.889);   
+  --color-primary-purple: oklch(58.32% .2139 278.205);  
+  --color-secondary: oklch(0.4833 0.2222 301.22);
+  --color-border: oklch(30.5% .0182 285.268);
+  --color-text: oklch(98.48% 0 0);; 
+  --color-hover-light-purple: oklch(0.7309 0.0779 304.71);
   --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
 }
 
 body {

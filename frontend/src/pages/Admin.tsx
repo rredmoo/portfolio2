@@ -1,13 +1,13 @@
-import Sidebar from "../components/admin/sidebar";
+import Sidebar from "../components/admin/Sidebar";
 import stylecomp from "styled-components";
 
 export default function Admin() {
 
   const MainContainer = stylecomp.section`
-    margin-left: 200px;
+    margin-left: 250px;
     padding: 1px 16px;
-    height: 1000px;
-    background: #f9f9fb;
+    min-height: 100dvh;
+    background: var(--color-bg-secondary);
   `;
 
   return(
