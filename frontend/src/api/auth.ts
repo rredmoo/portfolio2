@@ -1,17 +1,13 @@
 import { apiFetch } from "./client";
+import type { User } from "./types";
 
 export async function login(email: string, password: string) {
-    const loginApiFetch = await apiFetch("/login", {
-        method: "POST",
-        body: JSON.stringify({ email, password }),
-    });
-
-    if(!loginApiFetch.ok) throw new Error("AUTH LOG: Login failed");
-    return loginApiFetch.json();
+  return apiFetch<{ token: string }>("/login", {
+    method: "POST",
+    body: JSON.stringify({ email, password }),
+  });
 }
 
 export async function me() {
-  const loginApiFetch = await apiFetch("/admin");
-  if (!loginApiFetch.ok) throw new Error("AUTH LOG: Unauthorized");
-  return loginApiFetch.json();
+  return apiFetch<User>("/admin");
 }

@@ -2,15 +2,15 @@
 //  laravel and stores them as variables
 
 // URL api variable used below in apiFetcher
-const API_URL = "http://localhost:9000/api";
+const API_URL = "/api";
 
-export async function apiFetch(
+export async function apiFetch<T>(
   url: string,
   options: RequestInit = {}
-) {
+): Promise<T> {
   const token = localStorage.getItem("token");
 
-  return fetch(`${API_URL}${url}`, {
+  const res = await fetch(`${API_URL}${url}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
@@ -18,4 +18,7 @@ export async function apiFetch(
       ...options.headers,
     },
   });
+
+  return await res.json();
 }
+
