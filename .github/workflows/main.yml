@@ -20,5 +20,11 @@ jobs:
             git pull origin master
             docker compose down
             docker compose up -d --build
+
+            until docker compose exec mysql mysqladmin ping -h mysql --silent; do
+              sleep 2
+            done
+
             docker compose exec backend php artisan migrate --force
             docker compose exec backend php artisan optimize
+
