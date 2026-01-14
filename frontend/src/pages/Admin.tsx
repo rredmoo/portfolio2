@@ -15,7 +15,8 @@ export default function Admin() {
     <Sidebar/>
     <MainContainer>
 
-    <h1>hello there admin</h1>
+    <h1>Helo There, Admin</h1>
+    <p>This is the Dashboard</p>
 
     </MainContainer>
     </>
