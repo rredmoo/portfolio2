@@ -29,3 +29,9 @@ export interface PaginatedResponse<T> {
     per_page: number;
     total:number;
 }
+
+export type User = {
+  id: number;
+  email: string;
+  name: string;
+};
