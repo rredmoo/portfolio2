@@ -27,6 +27,7 @@ jobs:
             done
 
             # build frontend and backend so it updates prod
+            docker compose exec frontend npm ci
             docker compose exec frontend npm run build
             docker compose exec backend php artisan migrate --force
             docker compose exec backend php artisan optimize
