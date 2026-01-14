@@ -1,3 +1,23 @@
+import Sidebar from "../components/admin/Sidebar";
+import stylecomp from "styled-components";
+
 export default function Admin() {
-  return <h1>Admin Menu</h1>;
+
+  const MainContainer = stylecomp.section`
+    margin-left: 250px;
+    padding: 1px 16px;
+    min-height: 100dvh;
+    background: var(--color-bg-secondary);
+  `;
+
+  return(
+    <>
+    <Sidebar/>
+    <MainContainer>
+
+    <h1>hello there admin</h1>
+
+    </MainContainer>
+    </>
+  )
 }
