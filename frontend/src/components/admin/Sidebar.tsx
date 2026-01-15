@@ -2,6 +2,7 @@ import stylecomp from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartColumn, faInbox, faSuitcase, faCrosshairs, faServer, faGear } from '@fortawesome/free-solid-svg-icons'
 import dadamov from "../../../public/dadamov.png";
+import { useNavigate } from "react-router-dom";
 
 const SidebarWrapper = stylecomp.section`
       margin: 0;
@@ -47,15 +48,15 @@ const SidebarBtnPriority = stylecomp.a`
       }
   `;
 export default function Sidebar() {
-
+  const navigate = useNavigate();
   return (
     <>
       <SidebarWrapper>
         <SidebarImage />
-        <SidebarBtnPriority> <Icon icon={faChartColumn} /> Dashboard </SidebarBtnPriority>
+        <SidebarBtnPriority onClick={() => navigate("/admin")}> <Icon icon={faChartColumn} /> Dashboard </SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faInbox} /> Mail API </SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faSuitcase} /> Projects </SidebarBtnPriority>
-        <SidebarBtnPriority> <Icon icon={faCrosshairs} /> Skills </SidebarBtnPriority>
+        <SidebarBtnPriority onClick={() => navigate("/admin/skills")}> <Icon icon={faCrosshairs} /> Skills </SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faServer} /> Server Stats</SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faGear} /> Settings</SidebarBtnPriority>
       </SidebarWrapper>

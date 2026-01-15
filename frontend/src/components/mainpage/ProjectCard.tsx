@@ -1,5 +1,5 @@
 import stylecomp from 'styled-components';
-import type { Project } from "../api/types";
+import type { Project } from "../../api/types";
 
 const Card = stylecomp.article`
   background: #1f2933;
