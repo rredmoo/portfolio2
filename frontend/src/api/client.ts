@@ -19,6 +19,16 @@ export async function apiFetch<T>(
     },
   });
 
-  return await res.json();
+    if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(errorText || "Request failed");
+  }
+
+  // handle 204 / empty body
+  if (res.status === 204) {
+    return null as T;
+  }
+
+  return res.json() as Promise<T>;
 }
 

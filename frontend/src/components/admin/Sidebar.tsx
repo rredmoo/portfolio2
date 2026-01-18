@@ -5,23 +5,18 @@ import dadamov from "../../../public/dadamov.png";
 import { useNavigate } from "react-router-dom";
 
 const SidebarWrapper = stylecomp.section`
-      margin: 0;
-      padding: 0;
       width: 250px;
-      height: 100%;
-      position: fixed;
+      height: 100dvh;
+      background-color: var(--color-bg-secondary);
       overflow: auto;
-      background-color: var(--color-bg);
   `;
 
 const Icon = stylecomp(FontAwesomeIcon)`
       margin-right: 8px;
       vertical-align: middle;
-`
+`;
 
 const SidebarImage = stylecomp.section`
-      margin: 0;
-      padding: 0;
       background-image: url(${dadamov});
       background-size: cover;
       background-repeat: no-repeat;

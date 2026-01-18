@@ -11,7 +11,7 @@ class UpdateSkillRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,7 @@ class UpdateSkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'sometimes|string|max:255',
+            'title' => 'sometimes|string|max:255',
             'category' => 'sometimes|string|max:255',
             'level' => 'sometimes|string|max:255',
         ];

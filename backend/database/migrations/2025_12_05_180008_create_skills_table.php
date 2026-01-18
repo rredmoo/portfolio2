@@ -10,9 +10,9 @@ return new class extends Migration
     {
         Schema::create('skills', function (Blueprint $table) {
             $table->id();
-            $table->string('name', 64);
+            $table->string('title', 64);
             $table->enum('category', ['frontend', 'backend', 'devops', 'testing', 'other']);
-            $table->unsignedTinyInteger('level'); // 0–255, safe for levels 1–10
+            $table->unsignedTinyInteger('level');
             $table->timestamps();
         });
     }

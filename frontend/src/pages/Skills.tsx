@@ -1,14 +1,85 @@
+import MainAdminContainer from "../components/admin/MainAdminContainer";
+import AdminLayout from "../components/admin/AdminLayout";
 import Sidebar from "../components/admin/Sidebar";
-import MainAdminContainer from "../components/admin/AdminLayout";
+import { useState } from "react";
+import { createSkill } from "../api/skills";
 
 export default function Skills() {
+  const [skill, setSkill] = useState({
+    title: "",
+    category: "",
+    level: "",
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const created = await createSkill(skill);
+      console.log("Created:", created);
+
+      setSkill({ title: "", category: "", level: "" });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setSkill((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
   return (
     <>
-      <Sidebar />
-      <MainAdminContainer>
-        <h1>Hello There, Admin</h1>
-        <p>This is the Skills panel</p>
-      </MainAdminContainer>
+      <AdminLayout>
+        <Sidebar />
+        <MainAdminContainer>
+          <h1>Skills Panel</h1>
+          <form onSubmit={handleSubmit}>
+            <label>
+              Title:
+              <input
+                type="text"
+                name="title"
+                value={skill.title}
+                onChange={handleChange}
+              />
+            </label>
+
+            <br />
+
+            <label>
+              Category:
+              <input
+                type="text"
+                name="category"
+                value={skill.category}
+                onChange={handleChange}
+              />
+            </label>
+
+            <br />
+
+            <label>
+              Level:
+              <input
+                type="number"
+                name="level"
+                value={skill.level}
+                onChange={handleChange}
+              />
+            </label>
+
+            <br />
+
+            <button type="submit">Submit</button>
+          </form>
+        </MainAdminContainer>
+      </AdminLayout>
     </>
   );
 }

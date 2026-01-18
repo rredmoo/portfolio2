@@ -11,7 +11,7 @@ class StoreSkillRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;  // enabled to allow creating skills
     }
 
     /**
@@ -22,9 +22,9 @@ class StoreSkillRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'category' => 'required|string|max:255',
-            'level' => 'required|string|max:255',
+            'level' => 'required|integer|min:1|max:5'
         ];
     }
 }

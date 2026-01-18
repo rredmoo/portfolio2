@@ -1,10 +1,9 @@
 import styled from "styled-components";
 
-const MainAdminContainer = styled.section`
-  margin-left: 250px;
-  padding: 1px 16px;
+const AdminLayout = styled.div`
+  display: grid;
+  grid-template-columns: 250px 1fr;
   min-height: 100dvh;
-  background: var(--color-bg-secondary);
 `;
 
-export default MainAdminContainer;
+export default AdminLayout;
