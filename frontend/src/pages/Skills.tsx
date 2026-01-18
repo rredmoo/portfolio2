@@ -1,83 +1,38 @@
+// imported libs
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+// components
 import MainAdminContainer from "../components/admin/MainAdminContainer";
 import AdminLayout from "../components/admin/AdminLayout";
 import Sidebar from "../components/admin/Sidebar";
-import { useState } from "react";
-import { createSkill } from "../api/skills";
+import DataTable from "../components/admin/DataTable";
+import { Icon } from "../components/admin/Sidebar"
+
+// api
+import getSkills from "../api/skills";
+import type { Skill } from "../api/types";
+import { BtnAction, DataTableActionContainer } from "../components/admin/BtnAction";
 
 export default function Skills() {
-  const [skill, setSkill] = useState({
-    title: "",
-    category: "",
-    level: "",
-  });
+  const [skills, setSkills] = useState<Skill[]>([]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    getSkills().then((res) => setSkills(res.data));
+  }, []);
 
-    try {
-      const created = await createSkill(skill);
-      console.log("Created:", created);
-
-      setSkill({ title: "", category: "", level: "" });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    setSkill((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
+  const navigate = useNavigate();
   return (
     <>
       <AdminLayout>
         <Sidebar />
         <MainAdminContainer>
           <h1>Skills Panel</h1>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Title:
-              <input
-                type="text"
-                name="title"
-                value={skill.title}
-                onChange={handleChange}
-              />
-            </label>
-
-            <br />
-
-            <label>
-              Category:
-              <input
-                type="text"
-                name="category"
-                value={skill.category}
-                onChange={handleChange}
-              />
-            </label>
-
-            <br />
-
-            <label>
-              Level:
-              <input
-                type="number"
-                name="level"
-                value={skill.level}
-                onChange={handleChange}
-              />
-            </label>
-
-            <br />
-
-            <button type="submit">Submit</button>
-          </form>
+          <DataTableActionContainer>
+            <BtnAction onClick={() => navigate("/admin/create/skill")}><Icon icon={faPlus}/></BtnAction>
+          </DataTableActionContainer>
+          <DataTable<Skill> data={skills} />
         </MainAdminContainer>
       </AdminLayout>
     </>

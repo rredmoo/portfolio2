@@ -1,22 +1,22 @@
-import stylecomp from "styled-components";
+import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartColumn, faInbox, faSuitcase, faCrosshairs, faServer, faGear } from '@fortawesome/free-solid-svg-icons'
 import dadamov from "../../../public/dadamov.png";
 import { useNavigate } from "react-router-dom";
 
-const SidebarWrapper = stylecomp.section`
+const SidebarWrapper = styled.section`
       width: 250px;
       height: 100dvh;
       background-color: var(--color-bg-secondary);
       overflow: auto;
   `;
 
-const Icon = stylecomp(FontAwesomeIcon)`
+export const Icon = styled(FontAwesomeIcon)`
       margin-right: 8px;
       vertical-align: middle;
 `;
 
-const SidebarImage = stylecomp.section`
+const SidebarImage = styled.section`
       background-image: url(${dadamov});
       background-size: cover;
       background-repeat: no-repeat;
@@ -24,7 +24,7 @@ const SidebarImage = stylecomp.section`
       height: 100px;
 `;
 
-const SidebarBtnPriority = stylecomp.a`
+const SidebarBtnPriority = styled.a`
       display: block;
       color: white;
       margin-left: 4px;

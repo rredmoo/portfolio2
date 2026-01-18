@@ -4,29 +4,20 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Skills from "./pages/Skills";
+import CreateSkill from "./pages/CreateSkill";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/admin"
-          element={
-            <ProtectedRoute>
-              <Admin />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin/skills"
-          element={
-            <ProtectedRoute>
-              <Skills />
-            </ProtectedRoute>
-          }
-        />
+
+        {/* Protected Routes */}
+        <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
+        <Route path="/admin/skills" element={<ProtectedRoute><Skills /></ProtectedRoute>}/>
+        <Route path="/admin/create/skill" element={<ProtectedRoute><CreateSkill /></ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   );

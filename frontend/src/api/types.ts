@@ -17,7 +17,7 @@ export interface Skill {
     id: number;
     title: string;
     category: string;
-    level: string;
+    level: number;
 }
 
 
