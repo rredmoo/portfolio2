@@ -30,7 +30,7 @@ export default function CreateSkill() {
 
     setSkill((prev) => ({
       ...prev,
-      [name]: value,
+      [name]: name === "level" ? Number(value) : value,
     }));
   };
 
