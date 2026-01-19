@@ -1,19 +1,20 @@
 // imported libs
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
-
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // components
 import MainAdminContainer from "../components/admin/MainAdminContainer";
 import AdminLayout from "../components/admin/AdminLayout";
 import Sidebar from "../components/admin/Sidebar";
 import DataTable from "../components/admin/DataTable";
-import { Icon } from "../components/admin/Sidebar"
-
+import { Icon } from "../components/admin/Sidebar";
 // api
 import getSkills from "../api/skills";
 import type { Skill } from "../api/types";
-import { BtnAction, DataTableActionContainer } from "../components/admin/BtnAction";
+import {
+  BtnAction,
+  DataTableActionContainer,
+} from "../components/admin/BtnAction";
 
 export default function Skills() {
   const [skills, setSkills] = useState<Skill[]>([]);
@@ -23,6 +24,7 @@ export default function Skills() {
   }, []);
 
   const navigate = useNavigate();
+  const navCreateSkillURL = "/admin/create/skill";
   return (
     <>
       <AdminLayout>
@@ -30,9 +32,11 @@ export default function Skills() {
         <MainAdminContainer>
           <h1>Skills Panel</h1>
           <DataTableActionContainer>
-            <BtnAction onClick={() => navigate("/admin/create/skill")}><Icon icon={faPlus}/></BtnAction>
+            <BtnAction onClick={() => navigate(navCreateSkillURL)}>
+              <Icon icon={faPlus} />
+            </BtnAction>
           </DataTableActionContainer>
-          <DataTable<Skill> data={skills} />
+          <DataTable data={skills} editPath={(skill) => `/admin/skills/${skill.id}/edit`}/>
         </MainAdminContainer>
       </AdminLayout>
     </>

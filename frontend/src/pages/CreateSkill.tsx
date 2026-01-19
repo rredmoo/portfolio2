@@ -17,7 +17,6 @@ export default function CreateSkill() {
     try {
       const created = await createSkill(skill);
       console.log(created);
-      await createSkill(skill);
 
       setSkill({ title: "", category: "", level: 1 });
     } catch (error) {
@@ -43,38 +42,20 @@ export default function CreateSkill() {
           <form onSubmit={handleSubmit}>
             <label>
               Title:
-              <input
-                type="text"
-                name="title"
-                value={skill.title}
-                onChange={handleChange}
-              />
+              <input type="text" name="title" value={skill.title} onChange={handleChange}/>
             </label>
-
             <br />
 
             <label>
               Category:
-              <input
-                type="text"
-                name="category"
-                value={skill.category}
-                onChange={handleChange}
-              />
+              <input type="text" name="category" value={skill.category} onChange={handleChange}/>
             </label>
-
             <br />
 
             <label>
               Level:
-              <input
-                type="number"
-                name="level"
-                value={skill.level}
-                onChange={handleChange}
-              />
+              <input type="number" name="level" value={skill.level} onChange={handleChange}/>
             </label>
-
             <br />
 
             <button type="submit">Submit</button>

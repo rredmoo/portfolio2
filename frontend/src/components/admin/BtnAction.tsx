@@ -11,7 +11,6 @@ export const BtnAction = styled.button`
   background: var(--color-primary-purple);
   border: 1px solid var(--color-border);
   border-radius: 6px;
-  cursor: pointer;
   user-select: none;
   transition: background-color 0.2s ease, border-color 0.2s ease;
 

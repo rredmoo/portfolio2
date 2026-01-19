@@ -5,6 +5,7 @@ import Admin from "./pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Skills from "./pages/Skills";
 import CreateSkill from "./pages/CreateSkill";
+import EditSkill from "./pages/EditSkill";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
         <Route path="/admin/skills" element={<ProtectedRoute><Skills /></ProtectedRoute>}/>
         <Route path="/admin/create/skill" element={<ProtectedRoute><CreateSkill /></ProtectedRoute>}/>
+        <Route path="/admin/skills/:id/edit" element={<ProtectedRoute><EditSkill /></ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>
   );

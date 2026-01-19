@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const TableWrapper = styled.div`
   margin: 1rem 0 1rem;
@@ -25,7 +26,7 @@ const Thead = styled.thead`
 `;
 
 const Tr = styled.tr`
-// 
+  //
 `;
 
 const Th = styled.th`
@@ -38,7 +39,11 @@ const Th = styled.th`
   border-bottom: 1px solid var(--color-border);
   background: linear-gradient(
     180deg,
-    color-mix(in oklch, var(--color-bg-secondary) 90%, var(--color-primary-purple))
+    color-mix(
+        in oklch,
+        var(--color-bg-secondary) 90%,
+        var(--color-primary-purple)
+      )
       0%,
     var(--color-bg-secondary) 100%
   );
@@ -52,7 +57,7 @@ const Th = styled.th`
 `;
 
 const Tbody = styled.tbody`
-// 
+  //
 `;
 
 const Td = styled.td`
@@ -63,28 +68,42 @@ const Td = styled.td`
 `;
 
 const Row = styled.tr`
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
 
   &:nth-child(even) td {
-    background: color-mix(in oklch, var(--color-bg-secondary) 90%, var(--color-bg));
+    background: color-mix(
+      in oklch,
+      var(--color-bg-secondary) 90%,
+      var(--color-bg)
+    );
   }
   &:hover td {
-    background: color-mix(in oklch, var(--color-hover-light-purple) 16%, var(--color-bg-secondary));
+    background: color-mix(
+      in oklch,
+      var(--color-hover-light-purple) 16%,
+      var(--color-bg-secondary)
+    );
   }
   &:last-child td {
     border-bottom: none;
   }
 `;
 
-interface DataTableProps<T extends object> {
+type WithId = { id: number };
+interface DataTableProps<T extends WithId> {
   data: T[];
+  editPath: (row: T) => string;
 }
 
-export default function DataTable<T extends object>({
+export default function DataTable<T extends WithId>({
   data,
+  editPath,
 }: DataTableProps<T>) {
   if (data.length === 0) return null;
 
+  const navigate = useNavigate();
   const keys = Object.keys(data[0]) as (keyof T)[];
 
   return (
@@ -104,6 +123,10 @@ export default function DataTable<T extends object>({
               {keys.map((key) => (
                 <Td key={String(key)}>{String(row[key])}</Td>
               ))}
+
+              <Td>
+                <button onClick={() => navigate(editPath(row))}>Edit</button>
+              </Td>
             </Row>
           ))}
         </Tbody>

@@ -24,7 +24,7 @@ class UpdateSkillRequest extends FormRequest
         return [
             'title' => 'sometimes|string|max:255',
             'category' => 'sometimes|string|max:255',
-            'level' => 'sometimes|string|max:255',
+            'level' => 'required|integer|min:1|max:5'
         ];
     }
 }
