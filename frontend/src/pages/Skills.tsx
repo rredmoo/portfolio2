@@ -11,6 +11,8 @@ import { Icon } from "../components/admin/Sidebar";
 // api
 import getSkills from "../api/skills";
 import type { Skill } from "../api/types";
+import { deleteSkill } from "../api/skills";
+
 import {
   BtnAction,
   DataTableActionContainer,
@@ -22,6 +24,11 @@ export default function Skills() {
   useEffect(() => {
     getSkills().then((res) => setSkills(res.data));
   }, []);
+
+  const handleDelete = async (id: number) => {
+    await deleteSkill(id);
+    setSkills((prev) => prev.filter((s) => s.id !== id));
+  };
 
   const navigate = useNavigate();
   const navCreateSkillURL = "/admin/create/skill";
@@ -36,7 +43,11 @@ export default function Skills() {
               <Icon icon={faPlus} />
             </BtnAction>
           </DataTableActionContainer>
-          <DataTable data={skills} editPath={(skill) => `/admin/skills/${skill.id}/edit`}/>
+          <DataTable
+            data={skills}
+            editPath={(skill) => `/admin/skills/${skill.id}/edit`}
+            onDelete={handleDelete}
+          />
         </MainAdminContainer>
       </AdminLayout>
     </>

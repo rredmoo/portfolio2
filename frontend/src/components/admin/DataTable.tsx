@@ -92,20 +92,22 @@ const Row = styled.tr`
 `;
 
 type WithId = { id: number };
+
 interface DataTableProps<T extends WithId> {
   data: T[];
   editPath: (row: T) => string;
+  onDelete: (id: number) => void;
 }
 
 export default function DataTable<T extends WithId>({
   data,
   editPath,
+  onDelete,
 }: DataTableProps<T>) {
   if (data.length === 0) return null;
-
+  
   const navigate = useNavigate();
   const keys = Object.keys(data[0]) as (keyof T)[];
-
   return (
     <TableWrapper>
       <Table>
@@ -126,6 +128,7 @@ export default function DataTable<T extends WithId>({
 
               <Td>
                 <button onClick={() => navigate(editPath(row))}>Edit</button>
+                <button onClick={() => onDelete(row.id)}>Delete</button>
               </Td>
             </Row>
           ))}
