@@ -9,7 +9,8 @@ class Skill extends Model
     protected $fillable = [
         'title',
         'category',
-        'level'
+        'level',
+        'icon'
     ];
 
     public function projects()
