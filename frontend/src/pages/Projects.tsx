@@ -9,7 +9,7 @@ import Sidebar from "../components/admin/Sidebar";
 import DataTable from "../components/admin/DataTable";
 import { Icon } from "../components/admin/Sidebar";
 // api
-import getProjects from "../api/projects";
+import { getProjects } from "../api/projects";
 import type { Project } from "../api/types";
 import { deleteProject } from "../api/projects";
 

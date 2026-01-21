@@ -13,6 +13,16 @@ export interface Project {
     updated_at: string;
 }
 
+export interface CreateProjectAPI {
+  title: string;
+  short_description: string;
+  description: string;
+  technologies_used: string[];
+  link?: string;
+  skills?: number[];
+}
+
+
 export interface Skill {
     id: number;
     title: string;

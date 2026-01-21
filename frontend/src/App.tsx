@@ -7,6 +7,7 @@ import Skills from "./pages/Skills";
 import CreateSkill from "./pages/CreateSkill";
 import EditSkill from "./pages/EditSkill";
 import Projects from "./pages/Projects";
+import CreateProject from "./pages/CreateProject";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/admin/skills" element={<ProtectedRoute><Skills /></ProtectedRoute>}/>
         <Route path="/admin/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>}/>
         <Route path="/admin/create/skill" element={<ProtectedRoute><CreateSkill /></ProtectedRoute>}/>
+        <Route path="/admin/create/project" element={<ProtectedRoute><CreateProject /></ProtectedRoute>}/>
         <Route path="/admin/skills/:id/edit" element={<ProtectedRoute><EditSkill /></ProtectedRoute>}/>
       </Routes>
     </BrowserRouter>

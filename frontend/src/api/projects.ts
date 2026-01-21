@@ -1,5 +1,5 @@
 import { apiFetch } from "./client";
-import type { Project, PaginatedResponse } from './types';
+import type { Project, PaginatedResponse, CreateProjectAPI } from './types';
 
 
 //  Get all projects
@@ -15,12 +15,13 @@ export function getProject(id: number) {
 }
 
 // Create a new project
-export function createProject(project: Omit<Project, "id">) {
+export function createProject(project: CreateProjectAPI) {
   return apiFetch<Project>(`/projects`, {
     method: "POST",
     body: JSON.stringify(project),
   });
 }
+
 
 // Update an existing project
 export function updateProject(id: number, project: Omit<Project, "id">) {
