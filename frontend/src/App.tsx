@@ -6,6 +6,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Skills from "./pages/Skills";
 import CreateSkill from "./pages/CreateSkill";
 import EditSkill from "./pages/EditSkill";
+import Projects from "./pages/Projects";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         {/* Protected Routes */}
         <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
         <Route path="/admin/skills" element={<ProtectedRoute><Skills /></ProtectedRoute>}/>
+        <Route path="/admin/projects" element={<ProtectedRoute><Projects /></ProtectedRoute>}/>
         <Route path="/admin/create/skill" element={<ProtectedRoute><CreateSkill /></ProtectedRoute>}/>
         <Route path="/admin/skills/:id/edit" element={<ProtectedRoute><EditSkill /></ProtectedRoute>}/>
       </Routes>

@@ -50,7 +50,7 @@ export default function Sidebar() {
         <SidebarImage />
         <SidebarBtnPriority onClick={() => navigate("/admin")}> <Icon icon={faChartColumn} /> Dashboard </SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faInbox} /> Mail API </SidebarBtnPriority>
-        <SidebarBtnPriority> <Icon icon={faSuitcase} /> Projects </SidebarBtnPriority>
+        <SidebarBtnPriority onClick={() => navigate("/admin/projects")}> <Icon icon={faSuitcase} /> Projects </SidebarBtnPriority>
         <SidebarBtnPriority onClick={() => navigate("/admin/skills")}> <Icon icon={faCrosshairs} /> Skills </SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faServer} /> Server Stats</SidebarBtnPriority>
         <SidebarBtnPriority> <Icon icon={faGear} /> Settings</SidebarBtnPriority>
