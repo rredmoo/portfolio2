@@ -17,12 +17,23 @@ import {
   BtnAction,
   DataTableActionContainer,
 } from "../components/admin/BtnAction";
+import Loadable from "../components/common/Loadable";
 
 export default function Skills() {
   const [skills, setSkills] = useState<Skill[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getSkills().then((res) => setSkills(res.data));
+    const loadSkills = async () => {
+      try {
+        const res = await getSkills();
+        setSkills(res.data);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadSkills();
   }, []);
 
   const handleDelete = async (id: number) => {
@@ -43,11 +54,13 @@ export default function Skills() {
               <Icon icon={faPlus} />
             </BtnAction>
           </DataTableActionContainer>
-          <DataTable
-            data={skills}
-            editPath={(skill) => `/admin/skills/${skill.id}/edit`}
-            onDelete={handleDelete}
-          />
+          <Loadable loading={loading}>
+            <DataTable
+              data={skills}
+              editPath={(skill) => `/admin/skills/${skill.id}/edit`}
+              onDelete={handleDelete}
+            />
+          </Loadable>
         </MainAdminContainer>
       </AdminLayout>
     </>

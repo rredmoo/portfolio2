@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { createProject } from "../api/projects";
-import AdminLayout from "../components/admin/AdminLayout";
-import Sidebar from "../components/admin/Sidebar";
-import MainAdminContainer from "../components/admin/MainAdminContainer";
+import { createProject } from "../../api/projects";
+import AdminLayout from "../../components/admin/AdminLayout";
+import Sidebar from "../../components/admin/Sidebar";
+import MainAdminContainer from "../../components/admin/MainAdminContainer";
 import Select from "react-select";
-import getSkills from "../api/skills";
-import type { Skill } from "../api/types";
+import getSkills from "../../api/skills";
+import type { Skill } from "../../api/types";
 
 export default function CreateProject() {
   const [project, setProject] = useState({

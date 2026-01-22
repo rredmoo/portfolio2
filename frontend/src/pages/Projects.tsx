@@ -14,43 +14,55 @@ import type { Project } from "../api/types";
 import { deleteProject } from "../api/projects";
 
 import {
-    BtnAction,
-    DataTableActionContainer,
+  BtnAction,
+  DataTableActionContainer,
 } from "../components/admin/BtnAction";
+import Loadable from "../components/common/Loadable";
 
 export default function Projects() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
 
-    const [projects, setProjects] = useState<Project[]>([]);
-
-    useEffect(() => {
-        getProjects().then((res) => setProjects(res.data));
-    }, []);
-
-    const handleDelete = async (id: number) => {
-        await deleteProject(id);
-        setProjects((prev) => prev.filter((s) => s.id !== id));
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const res = await getProjects();
+        setProjects(res.data);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const navigate = useNavigate();
-    const navCreateProjectURL = "/admin/create/project";
-    return (
-        <>
-            <AdminLayout>
-                <Sidebar />
-                <MainAdminContainer>
-                    <h1>Projects Panel</h1>
-                    <DataTableActionContainer>
-                        <BtnAction onClick={() => navigate(navCreateProjectURL)}>
-                            <Icon icon={faPlus} />
-                        </BtnAction>
-                    </DataTableActionContainer>
-                    <DataTable
-                        data={projects}
-                        editPath={(project) => `/admin/projects/${project.id}/edit`}
-                        onDelete={handleDelete}
-                    />
-                </MainAdminContainer>
-            </AdminLayout>
-        </>
-    );
+    loadProjects();
+  }, []);
+
+  const handleDelete = async (id: number) => {
+    await deleteProject(id);
+    setProjects((prev) => prev.filter((s) => s.id !== id));
+  };
+
+  const navigate = useNavigate();
+  const navCreateProjectURL = "/admin/create/project";
+  return (
+    <>
+      <AdminLayout>
+        <Sidebar />
+        <MainAdminContainer>
+          <h1>Projects Panel</h1>
+          <DataTableActionContainer>
+            <BtnAction onClick={() => navigate(navCreateProjectURL)}>
+              <Icon icon={faPlus} />
+            </BtnAction>
+          </DataTableActionContainer>
+          <Loadable loading={loading}>
+            <DataTable
+              data={projects}
+              editPath={(project) => `/admin/projects/${project.id}/edit`}
+              onDelete={handleDelete}
+            />
+          </Loadable>
+        </MainAdminContainer>
+      </AdminLayout>
+    </>
+  );
 }

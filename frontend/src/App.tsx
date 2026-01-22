@@ -4,10 +4,10 @@ import Login from "./pages/Login";
 import Admin from "./pages/Admin";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Skills from "./pages/Skills";
-import CreateSkill from "./pages/CreateSkill";
-import EditSkill from "./pages/EditSkill";
+import CreateSkill from "./pages/CRUD/CreateSkill";
+import EditSkill from "./pages/CRUD/EditSkill";
 import Projects from "./pages/Projects";
-import CreateProject from "./pages/CreateProject";
+import CreateProject from "./pages/CRUD/CreateProject";
 
 function App() {
   return (
