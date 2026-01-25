@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getProjects } from "../api/projects";
 import type { Project } from "../api/types";
 import ProjectCard from "../components/mainpage/ProjectCard";
+import Landing from '../components/mainpage/Landing';
+
 
 function App() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -17,6 +19,7 @@ function App() {
 
   return (
     <main className="container">
+      <Landing />
       <h1>Projecets List</h1>
       <p>=====================================</p>
       <ul>

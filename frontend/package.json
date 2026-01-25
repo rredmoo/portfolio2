@@ -12,12 +12,15 @@
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/react-fontawesome": "^3.1.1",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.5.0",
     "@types/styled-components": "^5.1.36",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-router-dom": "^7.11.0",
     "react-select": "^5.10.2",
-    "styled-components": "^6.1.19"
+    "styled-components": "^6.1.19",
+    "three": "^0.182.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
