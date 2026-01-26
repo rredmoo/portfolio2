@@ -6,7 +6,7 @@ import { useRef, useEffect } from "react";
 
 export default function Model3D() {
   const group = useRef<Group>(null!); // "null!" is needed for typescript, because it will be asigned bellow
-  const { scene, animations } = useGLTF("/models/landingModelSittingIdle.glb");
+  const { scene, animations } = useGLTF("/models/model.glb");
   const { actions } = useAnimations(animations, group);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ export default function Model3D() {
   }, [actions]);
 
   return (
-    <Center position={[0, 0, -1]}>
+    <Center position={[0, 0, -2]}>
       <primitive ref={group} object={scene} scale={1.8} position={[0, 0.15, 0]} renderOrder={0} />
     </Center>
   );
 }
 
-useGLTF.preload("/models/landingModelSittingIdle.glb"); // prelaods the model before its even used for performance
+useGLTF.preload("/models/model.glb"); // prelaods the model before its even used for performance

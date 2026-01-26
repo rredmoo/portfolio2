@@ -12,7 +12,7 @@ const SidebarWrapper = styled.section`
   `;
 
 export const Icon = styled(FontAwesomeIcon)`
-      margin-right: 8px;
+      margin: 8px;
       vertical-align: middle;
 `;
 

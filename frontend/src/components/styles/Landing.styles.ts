@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const LandingContainer = styled.section` // TODO add all the color to root styles, so its not hardwired to this file
+export const LandingContainer = styled.section`
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #0b0f1a;
+  background-color: var(--bg-dark, #0b0f1a);
 `;
 
 export const LandingBackground = styled.div`
@@ -72,7 +72,8 @@ export const LandingHeadline = styled.h1`
   }
 `;
 
-export const Subtext = styled.p` // welcome to my portfolio text
+export const Subtext = styled.p`
+  // welcome to my portfolio text
   margin-top: 16px;
   max-width: 480px;
   font-size: 18px;
@@ -80,13 +81,17 @@ export const Subtext = styled.p` // welcome to my portfolio text
 `;
 
 export const Buttons = styled.div`
+  position: absolute;
+  bottom: 195px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 16px;
-  margin-top: 32px;
+  gap: 128px;
+  z-index: 3;
 `;
 
 export const PrimaryButton = styled.button`
-  padding: 14px 28px;
+  padding: 18px 32px;
   border-radius: 999px;
   border: none;
   cursor: pointer;
@@ -96,10 +101,43 @@ export const PrimaryButton = styled.button`
 `;
 
 export const SecondaryButton = styled.button`
-  padding: 14px 28px;
+  padding: 18px 32px;
   border-radius: 999px;
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.4);
+  font-size: 16px;
   color: white;
   cursor: pointer;
+`;
+
+export const SocialButtons = styled.div`
+  position: absolute;
+  bottom: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  z-index: 3;
+`;
+
+export const CircleButton = styled.a`
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  backdrop-filter: blur(6px);
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
 `;
