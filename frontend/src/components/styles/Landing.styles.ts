@@ -9,26 +9,23 @@ export const LandingContainer = styled.section` // TODO add all the color to roo
 `;
 
 export const LandingBackground = styled.div`
-  background-size: 60px 60px;
   position: absolute;
-  
-  // background grid
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  inset: 0;
+  z-index: 2;
+  pointer-events: none; /* important */
+
   &::before,
   &::after {
+    content: "";
     position: absolute;
     inset: -20%;
     filter: blur(120px);
-    pointer-events: none;
   }
-  
-  // fog effects
+
   &::before {
     background: radial-gradient(
       ellipse at bottom,
-      rgba(255, 90, 150, 0.25),
+      rgba(255, 90, 150, 0.08),
       transparent 70%
     );
   }
@@ -36,16 +33,15 @@ export const LandingBackground = styled.div`
   &::after {
     background: radial-gradient(
       ellipse at right,
-      rgba(80, 180, 255, 0.25),
+      rgba(80, 180, 255, 0.08),
       transparent 70%
     );
   }
-  inset: 0;
 `;
 
 export const LandingContent = styled.div`
   position: relative;
-  z-index: 2;
+  z-index: 3;
   height: 100%;
   max-width: 1200px;
   margin: 0 auto;

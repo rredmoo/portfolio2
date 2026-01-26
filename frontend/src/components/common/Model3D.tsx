@@ -15,12 +15,8 @@ export default function Model3D() {
   }, [actions]);
 
   return (
-    <Center>
-      <primitive ref={group} object={scene} scale={1.8} position={[0, 0, 0]} />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -0.3, 0]}> // oval effect under the model "shadow"
-        <circleGeometry args={[1.8, 64]} />
-        <meshBasicMaterial color="#63233d83" transparent opacity={0.15} />
-      </mesh>
+    <Center position={[0, 0, -1]}>
+      <primitive ref={group} object={scene} scale={1.8} position={[0, 0.15, 0]} renderOrder={0} />
     </Center>
   );
 }
