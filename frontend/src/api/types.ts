@@ -13,7 +13,7 @@ export interface Project {
     updated_at: string;
 }
 
-export interface CreateProjectAPI {
+export interface CreateProjectForm {
   title: string;
   short_description: string;
   description: string;
@@ -22,6 +22,15 @@ export interface CreateProjectAPI {
   skills?: number[];
 }
 
+export interface EditProjectForm {
+  title: string;
+  short_description: string;
+  description: string;
+  technologies_used: string[] | null;
+  link: string | null;
+  is_featured: boolean;
+  skills: number[];
+};
 
 export interface Skill {
     id: number;

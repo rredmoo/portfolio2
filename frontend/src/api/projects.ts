@@ -1,39 +1,36 @@
 import { apiFetch } from "./client";
-import type { Project, PaginatedResponse, CreateProjectAPI } from './types';
-
+import type { Project, PaginatedResponse, CreateProjectForm, EditProjectForm } from "./types";
 
 //  Get all projects (used in admin panel and public lists)
-export function getProjects(
-    page = 1
-): Promise<PaginatedResponse<Project>> {
-    return apiFetch<PaginatedResponse<Project>>(`/projects?page=${page}`);
+export function getProjects(page = 1): Promise<PaginatedResponse<Project>> {
+  return apiFetch<PaginatedResponse<Project>>(`/projects?page=${page}`);
 }
 // Get all featured projects, where is_featured=1 (used in public portfolio)
 export function getFeaturedProjects(
-    page = 1
+  page = 1,
 ): Promise<PaginatedResponse<Project>> {
-    return apiFetch<PaginatedResponse<Project>>(`/projects?is_featured=1&page=${page}`);
+  return apiFetch<PaginatedResponse<Project>>(
+    `/projects?is_featured=1&page=${page}`,
+  );
 }
 
-// Get a specific project by its ID 
+// Get a specific project by its ID
 export function getProject(id: number) {
   return apiFetch<Project>(`/projects/${id}`);
 }
 
 // Create a new project
-export function createProject(project: CreateProjectAPI) {
+export function createProject(project: CreateProjectForm) {
   return apiFetch<Project>(`/projects`, {
     method: "POST",
     body: JSON.stringify(project),
   });
 }
 
-
-// Update an existing project
-export function updateProject(id: number, project: Omit<Project, "id">) {
+export function updateProject(id: number, payload: EditProjectForm) {
   return apiFetch<Project>(`/projects/${id}`, {
     method: "PUT",
-    body: JSON.stringify(project),
+    body: JSON.stringify(payload),
   });
 }
 
