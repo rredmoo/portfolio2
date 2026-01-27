@@ -14,6 +14,7 @@ export default function CreateProject() {
     description: "",
     technologies_used: [] as string[],
     link: "",
+    is_featured: false,
     skills: [] as number[],
   });
 
@@ -40,6 +41,7 @@ export default function CreateProject() {
         description: "",
         technologies_used: [],
         link: "",
+        is_featured: false,
         skills: [],
       });
     } catch (error) {
@@ -48,12 +50,14 @@ export default function CreateProject() {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
     setProject((prev) => ({
       ...prev,
       [name]:
-        name === "technologies_used"
+        type === "checkbox"
+          ? checked
+          : name === "technologies_used"
           ? value.split(",").map((t) => t.trim()) // #TODO replace with technologies model, for now commas
           : value,
     }));
@@ -116,6 +120,16 @@ export default function CreateProject() {
                 type="text"
                 name="link"
                 value={project.link}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+
+            <label>
+              Feature it in portfolio?
+              <input
+                type="checkbox"
+                name="is_featured"
                 onChange={handleChange}
               />
             </label>

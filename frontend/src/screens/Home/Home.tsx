@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getProjects } from "../../api/projects";
+import { getFeaturedProjects } from "../../api/projects";
 import type { Project } from "../../api/types";
 import ProjectCard from "./Components/ProjectCard";
 import Landing from './Sections/Landing';
@@ -11,7 +11,7 @@ function App() {
   const [lastPage, setLastPage] = useState(1);
 
   useEffect(() => {
-    getProjects(currentPage).then((response) => {
+    getFeaturedProjects(currentPage).then((response) => {
       setProjects(response.data);
       setLastPage(response.last_page);
     });
