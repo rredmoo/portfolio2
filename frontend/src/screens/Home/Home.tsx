@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { getProjects } from "../api/projects";
-import type { Project } from "../api/types";
-import ProjectCard from "../components/mainpage/ProjectCard";
-import Landing from '../components/mainpage/Landing';
+import { getProjects } from "../../api/projects";
+import type { Project } from "../../api/types";
+import ProjectCard from "./Components/ProjectCard";
+import Landing from './Sections/Landing';
 
 
 function App() {

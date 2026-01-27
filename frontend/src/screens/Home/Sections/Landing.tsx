@@ -1,7 +1,7 @@
 import { Canvas } from "@react-three/fiber";
-import Model3D from "../common/Model3D";
-import { LandingContainer, LandingBackground, LandingContent, TopLabel, LandingHeadline, Subtext, Buttons, PrimaryButton, SecondaryButton } from "../styles/Landing.styles";
-import BackgroundParticles from "../styles/BackgroundParticles";
+import Model3D from "../Components/Model3D";
+import { LandingContainer, LandingBackground, LandingContent, TopLabel, LandingHeadline, Subtext, Buttons, PrimaryButton, SecondaryButton } from "./Landing.styles";
+import BackgroundParticles from "../Components/BackgroundParticles";
 
 export default function Landing() {
   return (
