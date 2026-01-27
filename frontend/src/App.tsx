@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Admin from "./pages/Admin";
+import Home from "./screens/Home/Home";
+import Login from "./screens/Auth/Login";
+import Admin from "./screens/Admin/Dashboard/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Skills from "./pages/Skills";
-import CreateSkill from "./pages/CRUD/CreateSkill";
-import EditSkill from "./pages/CRUD/EditSkill";
-import Projects from "./pages/Projects";
-import CreateProject from "./pages/CRUD/CreateProject";
+import Skills from "./screens/Admin/Skills/AdminSkills";
+import CreateSkill from "./screens/Admin/Skills/CreateSkill";
+import EditSkill from "./screens/Admin/Skills/EditSkill";
+import Projects from "./screens/Admin/Projects/AdminProjects";
+import CreateProject from "./screens/Admin/Projects/CreateProject";
 
 function App() {
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChartColumn, faInbox, faSuitcase, faCrosshairs, faServer, faGear } from '@fortawesome/free-solid-svg-icons'
-import dadamov from "../../../public/dadamov.png";
+import dadamov from "../../../../public/dadamov.png";
 import { useNavigate } from "react-router-dom";
 
 const SidebarWrapper = styled.section`

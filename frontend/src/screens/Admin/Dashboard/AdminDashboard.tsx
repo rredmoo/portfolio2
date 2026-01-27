@@ -1,6 +1,6 @@
-import MainAdminContainer from "../components/admin/MainAdminContainer";
-import AdminLayout from "../components/admin/AdminLayout";
-import Sidebar from "../components/admin/Sidebar";
+import MainAdminContainer from "../Components/MainAdminContainer";
+import AdminLayout from "../Components/AdminLayout";
+import Sidebar from "../Components/Sidebar";
 
 
 export default function Admin() {

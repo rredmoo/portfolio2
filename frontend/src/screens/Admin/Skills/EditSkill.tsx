@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import AdminLayout from "../../components/admin/AdminLayout";
-import MainAdminContainer from "../../components/admin/MainAdminContainer";
-import Sidebar from "../../components/admin/Sidebar";
-import { getSkill, updateSkill } from "../../api/skills";
-import type { Skill } from "../../api/types";
+import AdminLayout from "../Components/AdminLayout";
+import MainAdminContainer from "../Components/MainAdminContainer";
+import Sidebar from "../Components/Sidebar";
+import { getSkill, updateSkill } from "../../../api/skills";
+import type { Skill } from "../../../api/types";
 
 export default function EditSkill() {
   const { id } = useParams();

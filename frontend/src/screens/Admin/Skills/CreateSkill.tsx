@@ -1,8 +1,8 @@
 import { useState } from "react";
-import AdminLayout from "../../components/admin/AdminLayout";
-import MainAdminContainer from "../../components/admin/MainAdminContainer";
-import Sidebar from "../../components/admin/Sidebar";
-import { createSkill } from "../../api/skills";
+import AdminLayout from "../Components/AdminLayout";
+import MainAdminContainer from "../Components/MainAdminContainer";
+import Sidebar from "../Components/Sidebar";
+import { createSkill } from "../../../api/skills";
 
 export default function CreateSkill() {
   const [skill, setSkill] = useState({

@@ -3,21 +3,21 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // components
-import MainAdminContainer from "../components/admin/MainAdminContainer";
-import AdminLayout from "../components/admin/AdminLayout";
-import Sidebar from "../components/admin/Sidebar";
-import DataTable from "../components/admin/DataTable";
-import { Icon } from "../components/admin/Sidebar";
+import MainAdminContainer from "../Components/MainAdminContainer";
+import AdminLayout from "../Components/AdminLayout";
+import Sidebar from "../Components/Sidebar";
+import DataTable from "../Components/DataTable";
+import { Icon } from "../Components/Sidebar";
 // api
-import getSkills from "../api/skills";
-import type { Skill } from "../api/types";
-import { deleteSkill } from "../api/skills";
+import getSkills from "../../../api/skills";
+import type { Skill } from "../../../api/types";
+import { deleteSkill } from "../../../api/skills";
 
 import {
   BtnAction,
   DataTableActionContainer,
-} from "../components/admin/BtnAction";
-import Loadable from "../components/common/Loadable";
+} from "../Components/BtnAction";
+import Loadable from "../../../components/common/Loadable";
 
 export default function Skills() {
   const [skills, setSkills] = useState<Skill[]>([]);
