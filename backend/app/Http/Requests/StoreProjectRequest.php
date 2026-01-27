@@ -27,6 +27,7 @@ class StoreProjectRequest extends FormRequest
             'description' => 'required|string',
             'technologies_used' => 'nullable|array',
             'link' => 'nullable|url',
+            'is_featured' => 'required|bool',
             'skills' => 'array',
             'skills.*' => 'integer|exists:skills,id',
         ];

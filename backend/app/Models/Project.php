@@ -12,7 +12,8 @@ class Project extends Model
         'short_description',
         'description',
         'technologies_used',
-        'link' 
+        'link',
+        'is_featured'
     ];
 
     protected $casts = [

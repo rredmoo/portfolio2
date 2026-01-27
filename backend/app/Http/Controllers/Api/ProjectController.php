@@ -18,11 +18,19 @@ class ProjectController extends Controller
     public function index(Request $request)
     {
         $page = $request->query('page', 1); // If there is no filter/query, it will give page 1 by default
-        $cacheKey = "projects_page_" . $page; // to identify pages, for example projects_page_1, xxx_2 and so on
+        $isFeatured = $request->query('is_featured');
+        $cacheKey = "projects_page_{$page}_featured_" . ($isFeatured ?? 'all'); // to identify pages, for example projects_page_1, xxx_2 and so on
         // Cache pages using redis, pageinated with 3 projects per page
-        return Cache::remember($cacheKey, 60, function() {
-            return Project::with('skills')->paginate(3);
+        return Cache::remember($cacheKey, 60, function () use ($request) {
+            $query = Project::with('skills');
+
+            if ($request->has('is_featured')) {
+                $query->where('is_featured', (int) $request->query('is_featured'));
+            }
+
+            return $query->paginate(3)->withQueryString();
         });
+
         #TODO Add filters like isfeatured
 
         // return Cache::remember('projects_list', 60, function (){
@@ -39,7 +47,7 @@ class ProjectController extends Controller
     {
         $project = Project::create($request->validated());
 
-        if($request->has('skills')){
+        if ($request->has('skills')) {
             $project->skills()->sync($request->skills);
         }
 
@@ -54,7 +62,7 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        return $project->load('skills');    
+        return $project->load('skills');
     }
 
     /**
@@ -65,7 +73,7 @@ class ProjectController extends Controller
     {
         $project->update($request->validated());
 
-        if($request->has('skills')){
+        if ($request->has('skills')) {
             $project->skills()->sync($request->skills);
         }
         Cache::forget('projects_list');
