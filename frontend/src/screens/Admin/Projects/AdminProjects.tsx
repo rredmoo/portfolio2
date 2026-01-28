@@ -19,7 +19,7 @@ import {
 } from "../Components/BtnAction";
 import Loadable from "../../../components/common/Loadable";
 
-export default function Projects() {
+export default function AdminProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
 

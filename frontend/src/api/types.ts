@@ -39,7 +39,6 @@ export interface Skill {
     level: number;
 }
 
-
 // Laravels pagination
 export interface PaginatedResponse<T> {
     data: T[];

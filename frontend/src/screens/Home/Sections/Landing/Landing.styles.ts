@@ -12,7 +12,7 @@ export const LandingBackground = styled.div`
   position: absolute;
   inset: 0;
   z-index: 2;
-  pointer-events: none; /* important */
+  pointer-events: none;
 
   &::before,
   &::after {

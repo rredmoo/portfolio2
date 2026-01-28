@@ -1,5 +1,5 @@
 import { Canvas } from "@react-three/fiber";
-import Model3D from "../Components/Model3D";
+import Model3D from "../../Components/Model3D";
 import {
   LandingContainer,
   LandingBackground,
@@ -13,14 +13,14 @@ import {
   SocialButtons,
   CircleButton,
 } from "./Landing.styles";
-import BackgroundParticles from "../Components/BackgroundParticles";
-import SceneGrid from "../../../components/common/SceneGrid";
+import BackgroundParticles from "../../Components/BackgroundParticles";
+import { SceneGridGround } from "./SceneGrid.tsx";
 import {
   faSquareGithub,
   faSquareLinkedin,
   faDiscord,
 } from "@fortawesome/free-brands-svg-icons";
-import { Icon } from "../../Admin/Components/Sidebar";
+import { Icon } from "../../../Admin/Components/Sidebar.tsx";
 
 export default function Landing() {
   return (
@@ -36,7 +36,7 @@ export default function Landing() {
         <directionalLight position={[5, 5, 5]} intensity={0.6} /> // light
         source location
         <Model3D />
-        <SceneGrid />
+        <SceneGridGround />
         <BackgroundParticles />
       </Canvas>
 

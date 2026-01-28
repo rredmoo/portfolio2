@@ -19,7 +19,7 @@ import {
 } from "../Components/BtnAction";
 import Loadable from "../../../components/common/Loadable";
 
-export default function Skills() {
+export default function AdminSkills() {
   const [skills, setSkills] = useState<Skill[]>([]);
   const [loading, setLoading] = useState(true);
 
