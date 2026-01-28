@@ -28,6 +28,7 @@ class StoreProjectRequest extends FormRequest
             'technologies_used' => 'nullable|array',
             'link' => 'nullable|url',
             'is_featured' => 'required|bool',
+            'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
             'skills' => 'array',
             'skills.*' => 'integer|exists:skills,id',
         ];

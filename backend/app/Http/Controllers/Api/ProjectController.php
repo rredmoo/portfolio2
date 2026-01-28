@@ -8,6 +8,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -45,7 +46,13 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $project = Project::create($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            $data['imagePath'] = $request->file('image')->store('projects', 'public');
+        }
+
+        $project = Project::create($data);
 
         if ($request->has('skills')) {
             $project->skills()->sync($request->skills);
@@ -71,7 +78,16 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $project->update($request->validated());
+        $data = $request->validated();
+
+        if ($request->hasFile('image')) {
+            if ($project->imagePath) {
+                Storage::disk('public')->delete($project->imagePath);
+            }
+            $data['imagePath'] = $request->file('image')->store('projects', 'public');
+        }
+
+        $project->update($data);
 
         if ($request->has('skills')) {
             $project->skills()->sync($request->skills);

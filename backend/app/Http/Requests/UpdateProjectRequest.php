@@ -28,6 +28,7 @@ class UpdateProjectRequest extends FormRequest
             'technologies_used' => 'sometimes|array',
             'link' => 'sometimes|url',
             'is_featured' => 'required|bool',
+            'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
             'skills' => 'sometimes|array',
             'skills.*' => 'integer|exists:skills,id',
         ];

@@ -1,5 +1,10 @@
 import { apiFetch } from "./client";
-import type { Project, PaginatedResponse, CreateProjectForm, EditProjectForm } from "./types";
+import type {
+  Project,
+  PaginatedResponse,
+  // CreateProjectForm,
+  EditProjectForm,
+} from "./types";
 
 //  Get all projects (used in admin panel and public lists)
 export function getProjects(page = 1): Promise<PaginatedResponse<Project>> {
@@ -20,10 +25,10 @@ export function getProject(id: number) {
 }
 
 // Create a new project
-export function createProject(project: CreateProjectForm) {
-  return apiFetch<Project>(`/projects`, {
+export function createProject(formData: FormData) {
+  return apiFetch("/projects", {
     method: "POST",
-    body: JSON.stringify(project),
+    body: formData,
   });
 }
 

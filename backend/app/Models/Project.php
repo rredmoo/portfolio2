@@ -13,7 +13,8 @@ class Project extends Model
         'description',
         'technologies_used',
         'link',
-        'is_featured'
+        'is_featured',
+        'imagePath'
     ];
 
     protected $casts = [

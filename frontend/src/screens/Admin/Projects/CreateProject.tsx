@@ -8,6 +8,7 @@ import getSkills from "../../../api/skills";
 import type { Skill } from "../../../api/types";
 
 export default function CreateProject() {
+  // states
   const [project, setProject] = useState({
     title: "",
     short_description: "",
@@ -17,12 +18,8 @@ export default function CreateProject() {
     is_featured: false,
     skills: [] as number[],
   });
-
   const [skills, setSkills] = useState<Skill[]>([]);
-
-  useEffect(() => {
-    getSkills().then((res) => setSkills(res.data));
-  }, []);
+  const [image, setImage] = useState<File | null>(null);
 
   const optionSkill = skills.map((skill) => ({
     value: skill.id,
@@ -30,23 +27,28 @@ export default function CreateProject() {
   }));
 
   const handleSubmit = async (e: React.FormEvent) => {
+    // Testing out formData insstead of the old api
     e.preventDefault();
 
-    try {
-      const created = await createProject(project);
-      console.log(created);
-      setProject({
-        title: "",
-        short_description: "",
-        description: "",
-        technologies_used: [],
-        link: "",
-        is_featured: false,
-        skills: [],
-      });
-    } catch (error) {
-      console.error(error);
+    const formData = new FormData();
+
+    formData.append("title", project.title);
+    formData.append("short_description", project.short_description);
+    formData.append("description", project.description);
+    formData.append("link", project.link);
+    formData.append("is_featured", project.is_featured ? "1" : "0"); // because laravel is using bool instead of boolean, so it want 1/0
+
+    project.technologies_used.forEach((technologies, i) =>
+      formData.append(`technologies_used[${i}]`, technologies),
+    );
+
+    project.skills.forEach((id) => formData.append("skills[]", String(id)));
+
+    if (image) {
+      formData.append("image", image);
     }
+
+    await createProject(formData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,11 +60,14 @@ export default function CreateProject() {
         type === "checkbox"
           ? checked
           : name === "technologies_used"
-          ? value.split(",").map((t) => t.trim()) // #TODO replace with technologies model, for now commas
-          : value,
+            ? value.split(",").map((t) => t.trim()) // #TODO replace with technologies model, for now commas
+            : value,
     }));
   };
 
+  useEffect(() => {
+    getSkills().then((res) => setSkills(res.data));
+  }, []);
   return (
     <>
       <AdminLayout>
@@ -131,6 +136,15 @@ export default function CreateProject() {
                 type="checkbox"
                 name="is_featured"
                 onChange={handleChange}
+              />
+            </label>
+            <br />
+            <label>
+              Project Image:
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files?.[0] || null)}
               />
             </label>
             <br />
