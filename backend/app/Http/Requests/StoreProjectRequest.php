@@ -25,7 +25,6 @@ class StoreProjectRequest extends FormRequest
             'title' => 'required|string|max:64',
             'short_description' => 'required|string|max:500',
             'description' => 'required|string',
-            'technologies_used' => 'nullable|array',
             'link' => 'nullable|url',
             'is_featured' => 'required|bool',
             'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',

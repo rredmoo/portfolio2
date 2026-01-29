@@ -5,9 +5,9 @@ export interface Project {
     title: string;
     short_description: string;
     description: string;
-    technologies_used: string[] | null;
     link: string | null;
     is_featured: boolean;
+    imagePath: string;
     skills: Skill[];
     created_at: string;
     updated_at: string;
@@ -17,7 +17,6 @@ export interface CreateProjectForm {
   title: string;
   short_description: string;
   description: string;
-  technologies_used: string[];
   link?: string;
   skills?: number[];
 }
@@ -26,7 +25,6 @@ export interface EditProjectForm {
   title: string;
   short_description: string;
   description: string;
-  technologies_used: string[] | null;
   link: string | null;
   is_featured: boolean;
   skills: number[];

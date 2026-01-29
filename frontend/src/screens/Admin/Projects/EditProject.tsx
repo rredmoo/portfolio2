@@ -98,25 +98,6 @@ export default function EditProject() {
             placeholder="Project link"
           />
 
-          <input
-            name="technologies_used"
-            value={project.technologies_used?.join(", ") ?? ""}
-            onChange={(e) =>
-              setProject((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      technologies_used: e.target.value
-                        .split(",")
-                        .map((t) => t.trim())
-                        .filter(Boolean),
-                    }
-                  : prev,
-              )
-            }
-            placeholder="React, Laravel, Vue"
-          />
-
           <input 
             type="checkbox" 
             name="is_featured" 

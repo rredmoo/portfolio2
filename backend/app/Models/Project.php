@@ -11,14 +11,9 @@ class Project extends Model
         'title',
         'short_description',
         'description',
-        'technologies_used',
         'link',
         'is_featured',
         'imagePath'
-    ];
-
-    protected $casts = [
-        'technologies_used' => 'array'
     ];
 
     # many skills for one project

@@ -25,7 +25,6 @@ class UpdateProjectRequest extends FormRequest
             'title' => 'sometimes|string|max:255',
             'short_description' => 'sometimes|string|max:500',
             'description' => 'sometimes|string',
-            'technologies_used' => 'sometimes|array',
             'link' => 'sometimes|url',
             'is_featured' => 'required|bool',
             'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',

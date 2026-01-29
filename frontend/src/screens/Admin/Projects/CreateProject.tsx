@@ -13,7 +13,6 @@ export default function CreateProject() {
     title: "",
     short_description: "",
     description: "",
-    technologies_used: [] as string[],
     link: "",
     is_featured: false,
     skills: [] as number[],
@@ -38,10 +37,6 @@ export default function CreateProject() {
     formData.append("link", project.link);
     formData.append("is_featured", project.is_featured ? "1" : "0"); // because laravel is using bool instead of boolean, so it want 1/0
 
-    project.technologies_used.forEach((technologies, i) =>
-      formData.append(`technologies_used[${i}]`, technologies),
-    );
-
     project.skills.forEach((id) => formData.append("skills[]", String(id)));
 
     if (image) {
@@ -59,9 +54,7 @@ export default function CreateProject() {
       [name]:
         type === "checkbox"
           ? checked
-          : name === "technologies_used"
-            ? value.split(",").map((t) => t.trim()) // #TODO replace with technologies model, for now commas
-            : value,
+          : value,
     }));
   };
 
@@ -103,17 +96,6 @@ export default function CreateProject() {
                 type="text"
                 name="description"
                 value={project.description}
-                onChange={handleChange}
-              />
-            </label>
-            <br />
-
-            <label>
-              Technologies (comma separated):
-              <input
-                type="text"
-                name="technologies_used"
-                value={project.technologies_used.join(", ")}
                 onChange={handleChange}
               />
             </label>

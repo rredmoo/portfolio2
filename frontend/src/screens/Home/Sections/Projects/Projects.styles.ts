@@ -44,25 +44,57 @@ export const ProjectBackground = styled.div`
   }
 `;
 
-export const HrPrimary = styled.hr`
-  height: 1px;
-  background-color: rgba(255, 255, 255, 0.1);
-  border: none;
+export const AllProjects = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 200px;
 `;
 
 export const Card = styled.article`
-  background: var(--color-primary-purple);
-  border-radius: 8px;
-  padding: 16px;
-  margin-bottom: 16px;
-  width: 300px
+  background-color: #260d5578;
+  box-shadow: 0 0 15px rgba(117, 5, 187, 0.69);
+  padding: 20px;
+  border-radius: 37px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem auto;
+  width: 80%;
+  max-width: 800px;
+  transition: background-color 0.6s;
 
-  h3 {
-    margin-bottom: 8px;
-    color: var(--color-primary);
+  &:hover {
+    background-color: #1d052b4d;
+  }
+
+  h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 
   p {
-    opacity: 0.85;
+    margin: 0.25rem 0;
+    font-size: 0.95rem;
+    opacity: 0.7;
+    text-align: center;
+  }
+
+  img {
+    width: 350px;
+    height: 250px
+    border-radius: 12px;
+    padding: 1rem;
+  }
+
+  a {
+    color: #8b5cf6;
+    text-decoration: none;
+    margin: 0.5rem 0;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 `;

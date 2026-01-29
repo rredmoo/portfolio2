@@ -2,10 +2,17 @@ import { useEffect, useState } from "react";
 import { getFeaturedProjects } from "../../../../api/projects";
 import type { Project } from "../../../../api/types";
 import ProjectCard from "./ProjectCard.tsx";
-import { ProjectBackground, HrPrimary } from "./Projects.styles.ts";
+import {
+  AllProjects,
+  ProjectBackground,
+} from "./Projects.styles.ts";
 import { SceneGridWall } from "../Landing/SceneGrid";
 import { Canvas } from "@react-three/fiber";
 import Pagination from "../../../../components/common/Pagination.tsx";
+import {
+  Container,
+  HrPrimary,
+} from "../../../../components/common/CommonStyles.ts";
 
 export default function Projects() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -23,7 +30,7 @@ export default function Projects() {
     <>
       <ProjectBackground>
         <HrPrimary />
-        
+
         {/* canvas background of lines */}
         <div className="canvas-bg">
           <Canvas>
@@ -33,13 +40,13 @@ export default function Projects() {
         <h1>Projecets List</h1>
 
         {/* list of all projects */}
-        <ul>
-          {projects.map((project) => (
-            <li key={project.id}>
-              <ProjectCard project={project} />
-            </li>
-          ))}
-        </ul>
+        <Container>
+          <AllProjects>
+            {projects.map((project) => (
+              <ProjectCard project={project}/>
+            ))}
+          </AllProjects>
+        </Container>
 
         {/* pagination */}
         <Pagination
@@ -48,7 +55,6 @@ export default function Projects() {
           onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
           onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
         />
-
       </ProjectBackground>
     </>
   );
