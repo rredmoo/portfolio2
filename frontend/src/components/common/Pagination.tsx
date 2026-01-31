@@ -1,4 +1,5 @@
 import type { PaginationProp } from "./Types";
+import { PaginationWrapper } from "./CommonStyles";
 
 export default function Pagination({
   currentPage,
@@ -7,7 +8,7 @@ export default function Pagination({
   onNext,
 }: PaginationProp) {
   return (
-    <>
+    <PaginationWrapper>
       <button onClick={onPrev} disabled={currentPage === 1}>
         Previous
       </button>
@@ -19,6 +20,6 @@ export default function Pagination({
       <button onClick={onNext} disabled={currentPage === lastPage}>
         Next
       </button>
-    </>
+    </PaginationWrapper>
   );
 }

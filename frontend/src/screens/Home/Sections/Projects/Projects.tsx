@@ -3,7 +3,9 @@ import { getFeaturedProjects } from "../../../../api/projects";
 import type { Project } from "../../../../api/types";
 import ProjectCard from "./ProjectCard.tsx";
 import {
-  AllProjects,
+  ProjectsGrid,
+  RightColumn,
+  FeaturedCard,
   ProjectBackground,
 } from "./Projects.styles.ts";
 import { SceneGridWall } from "../Landing/SceneGrid";
@@ -12,6 +14,7 @@ import Pagination from "../../../../components/common/Pagination.tsx";
 import {
   Container,
   HrPrimary,
+  H1PrimaryTitle,
 } from "../../../../components/common/CommonStyles.ts";
 
 export default function Projects() {
@@ -37,24 +40,32 @@ export default function Projects() {
             <SceneGridWall />
           </Canvas>
         </div>
-        <h1>Projecets List</h1>
 
         {/* list of all projects */}
         <Container>
-          <AllProjects>
-            {projects.map((project) => (
-              <ProjectCard project={project}/>
-            ))}
-          </AllProjects>
+          <H1PrimaryTitle>
+            <h1>Projecets List</h1>
+          </H1PrimaryTitle>
+          <ProjectsGrid>
+            <FeaturedCard>
+              {projects[0] && <ProjectCard project={projects[0]} />}
+              {/* pagination */}
+              <Pagination
+                currentPage={currentPage}
+                lastPage={lastPage}
+                onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+                onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
+              />
+            </FeaturedCard>
+            <RightColumn>
+              {projects
+                .slice(1, 3)
+                .map((p) =>
+                  p ? <ProjectCard key={p.id} project={p} /> : null,
+                )}
+            </RightColumn>
+          </ProjectsGrid>
         </Container>
-
-        {/* pagination */}
-        <Pagination
-          currentPage={currentPage}
-          lastPage={lastPage}
-          onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-          onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
-        />
       </ProjectBackground>
     </>
   );

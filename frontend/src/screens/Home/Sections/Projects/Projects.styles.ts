@@ -44,28 +44,62 @@ export const ProjectBackground = styled.div`
   }
 `;
 
-export const AllProjects = styled.div`
+export const ProjectsGrid = styled.div`
+  display: grid;
+  grid-template-columns: 55% 45%;
+  gap: 1rem;
+  width: 100%;
+`;
+
+/*
+ * right side of the grid, 2 projects stacked up in a column
+ * left side (single column) is ProjectCard itself wrapped in FeaturedCard
+ */
+export const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin-top: 200px;
+  gap: 20px;
+  height: 800px;
+
+  & > article {
+    flex: 1;
+  }
+
+  & img {
+    height: 220px;
+  }
+`;
+
+export const FeaturedCard = styled.div`
+  height: 850px;
+  & article {
+    height: 100%;
+  }
+
+  & img {
+    height: 320px;
+  }
 `;
 
 export const Card = styled.article`
-  background-color: #260d5578;
-  box-shadow: 0 0 15px rgba(117, 5, 187, 0.69);
   padding: 20px;
   border-radius: 37px;
+  background-color: rgba(20, 24, 39);
+  border: solid 2px rgba(232, 232, 232, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1rem auto;
-  width: 80%;
+  margin: 0;
+  width: 100%;
   max-width: 800px;
   transition: background-color 0.6s;
 
   &:hover {
-    background-color: #1d052b4d;
+    background-color: rgba(232, 232, 232, 0.22);
+  }
+
+  article {
+    overflow: hidden;
   }
 
   h1 {
@@ -81,11 +115,28 @@ export const Card = styled.article`
     text-align: center;
   }
 
+  .skillsBanner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0.5rem 0;
+  }
+
+  .skill {
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+    background-color: rgba(232, 232, 232, 0.22);
+    font-size: 0.8rem;
+    text-align: center;
+    white-space: nowrap;
+  }
+
   img {
-    width: 350px;
-    height: 250px
+    width: 100%;
+    object-fit: cover;
+    flex-shrink: 0;
     border-radius: 12px;
-    padding: 1rem;
   }
 
   a {
