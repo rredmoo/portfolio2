@@ -82,6 +82,7 @@ export const FeaturedCard = styled.div`
 `;
 
 export const Card = styled.article`
+  position: relative;
   padding: 20px;
   border-radius: 37px;
   background-color: rgba(20, 24, 39);
@@ -140,12 +141,21 @@ export const Card = styled.article`
   }
 
   a {
-    color: #8b5cf6;
+    position: absolute; /* add */
+    bottom: 20px; /* adjust as needed */
+    left: 20px;
     text-decoration: none;
-    margin: 0.5rem 0;
   }
 
   a:hover {
     text-decoration: underline;
+  }
+
+  a button {
+    background-color: transparent;
+    border: solid 2px rgba(232, 232, 232, 0.2);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    color: var(--color-text);
   }
 `;

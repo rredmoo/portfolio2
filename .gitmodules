@@ -1,0 +1,3 @@
+[submodule "otterwiki"]
+	path = otterwiki
+	url = https://github.com/redimp/otterwiki.git
