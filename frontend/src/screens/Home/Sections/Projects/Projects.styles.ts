@@ -78,6 +78,7 @@ export const FeaturedCard = styled.div`
 
   & img {
     height: 320px;
+    padding: 1rem 0 1rem;
   }
 `;
 
@@ -113,7 +114,8 @@ export const Card = styled.article`
     margin: 0.25rem 0;
     font-size: 0.95rem;
     opacity: 0.7;
-    text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
   }
 
   .skillsBanner {

@@ -48,7 +48,7 @@ export default function Projects() {
           </H1PrimaryTitle>
           <ProjectsGrid>
             <FeaturedCard>
-              {projects[0] && <ProjectCard project={projects[0]} />}
+              {projects[0] && <ProjectCard project={projects[0]} type="left" />}
               {/* pagination */}
               <Pagination
                 currentPage={currentPage}
