@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ProjectBackground = styled.div`
   position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 120vh;
   overflow: hidden;
   background-color: var(--bg-dark, #0b0f1a);
   &::before,
@@ -49,6 +49,8 @@ export const ProjectsGrid = styled.div`
   grid-template-columns: 55% 45%;
   gap: 1rem;
   width: 100%;
+  align-items: stretch;
+  min-height: 50vh;
 `;
 
 /*
@@ -58,42 +60,43 @@ export const ProjectsGrid = styled.div`
 export const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  height: 800px;
+  gap: 1rem;
+  height: 100%;
 
   & > article {
     flex: 1;
   }
 
   & img {
-    height: 220px;
+    height: clamp(110px, 12vw, 155px);
   }
 `;
 
 export const FeaturedCard = styled.div`
-  height: 850px;
+  height: 100%;
+
   & article {
     height: 100%;
   }
 
   & img {
-    height: 320px;
-    padding: 1rem 0 1rem;
+    height: clamp(155px, 17vw, 235px);
+    padding: 0.75rem 0;
   }
 `;
 
 export const Card = styled.article`
   position: relative;
-  padding: 20px;
-  border-radius: 37px;
+  padding: clamp(1rem, 1.5vw, 1.25rem);
+  border-radius: clamp(1.5rem, 3vw, 2.3rem);
   background-color: rgba(20, 24, 39);
-  border: solid 2px rgba(232, 232, 232, 0.2);
+  border: solid 1px rgba(232, 232, 232, 0.2);
   display: flex;
   flex-direction: column;
   align-items: center;
   margin: 0;
   width: 100%;
-  max-width: 800px;
+  max-width: min(100%, 46rem);
   transition: background-color 0.6s;
 
   &:hover {
