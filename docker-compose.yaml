@@ -12,8 +12,6 @@ services: # group of containers to run
     frontend:
         build: ./frontend
         container_name: portfolio-frontend
-        volumes:
-            - ./frontend:/usr/src/app
         depends_on:
             - backend
 
