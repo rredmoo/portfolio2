@@ -1,6 +1,5 @@
 import { useState } from "react";
-import AdminLayout from "../Components/AdminLayout";
-import MainAdminContainer from "../Components/MainAdminContainer";
+import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { createSkill } from "../../../api/skills";
 

@@ -11,23 +11,23 @@ export const ResumeBackground = styled.div`
   &::after {
     content: "";
     position: absolute;
-    inset: -30%;
-    filter: blur(160px);
-    opacity: 0.6;
+    inset: -20%;
+    filter: blur(120px);
+    z-index: 0;
   }
 
   &::before {
     background: radial-gradient(
-      ellipse at bottom left,
-      rgba(80, 180, 255, 0.06),
+      ellipse at bottom,
+      var(--color-bg-accent-pink),
       transparent 70%
     );
   }
 
   &::after {
     background: radial-gradient(
-      ellipse at bottom right,
-      rgba(255, 90, 150, 0.05),
+      ellipse at right,
+      var(--color-bg-accent-blue),
       transparent 70%
     );
   }
@@ -77,7 +77,7 @@ export const ResumeField = styled.section`
     }
   }
 
-  .resumeSections{
+  .resumeSections {
     margin: 1rem 2rem 0rem;
   }
 

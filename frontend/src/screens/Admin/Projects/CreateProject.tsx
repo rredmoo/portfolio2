@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { createProject } from "../../../api/projects";
-import AdminLayout from "../Components/AdminLayout";
+import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
-import MainAdminContainer from "../Components/MainAdminContainer";
 import Select from "react-select";
 import getSkills from "../../../api/skills";
 import type { Skill } from "../../../api/types";

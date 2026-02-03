@@ -3,8 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 // components
-import MainAdminContainer from "../Components/MainAdminContainer";
-import AdminLayout from "../Components/AdminLayout";
+import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import DataTable from "../Components/DataTable";
 import { Icon } from "../Components/Sidebar";

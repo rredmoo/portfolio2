@@ -1,5 +1,4 @@
-import MainAdminContainer from "../Components/MainAdminContainer";
-import AdminLayout from "../Components/AdminLayout";
+import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 
 

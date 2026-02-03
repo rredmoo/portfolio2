@@ -17,7 +17,7 @@ export const ProjectBackground = styled.div`
   &::before {
     background: radial-gradient(
       ellipse at top,
-      rgba(255, 90, 150, 0.08),
+      var(--color-bg-accent-pink),
       transparent 70%
     );
   }
@@ -25,7 +25,7 @@ export const ProjectBackground = styled.div`
   &::after {
     background: radial-gradient(
       ellipse at right,
-      rgba(80, 180, 255, 0.08),
+      var(--color-bg-accent-blue),
       transparent 70%
     );
   }

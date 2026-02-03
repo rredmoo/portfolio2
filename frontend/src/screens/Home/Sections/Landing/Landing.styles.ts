@@ -25,7 +25,7 @@ export const LandingBackground = styled.div`
   &::before {
     background: radial-gradient(
       ellipse at bottom,
-      rgba(255, 90, 150, 0.08),
+      var(--color-bg-accent-pink),
       transparent 70%
     );
   }
@@ -33,7 +33,7 @@ export const LandingBackground = styled.div`
   &::after {
     background: radial-gradient(
       ellipse at right,
-      rgba(80, 180, 255, 0.08),
+      var(--color-bg-accent-blue),
       transparent 70%
     );
   }
@@ -49,38 +49,37 @@ export const LandingContent = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   padding: 100px 24px 0 24px;
-`;
 
-export const TopLabel = styled.div`
-  letter-spacing: 2px;
-  font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
-  margin-bottom: 16px;
-`;
+  .topLable {
+    letter-spacing: 2px;
+    font-size: 14px;
+    color: var(--color-text-light-white);
+    margin-bottom: 16px;
+  }
 
-export const LandingHeadline = styled.h1`
-  font-size: clamp(2.5rem, 6rem, 4.5rem);
-  font-weight: 700;
-  line-height: 1.1;
-  color: #fff;
+  .landingHealine {
+    font-size: clamp(2.5rem, 6rem, 4.5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-text);
 
-  // gradient text color
-  span {
-    background: linear-gradient(90deg, #ff5f9e, #8b5cf6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    span {
+      background: linear-gradient(90deg, #ff5f9e, #8b5cf6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .subtext {
+    // welcome to my portfolio text
+    margin-top: 16px;
+    max-width: 480px;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.75);
   }
 `;
 
-export const Subtext = styled.p`
-  // welcome to my portfolio text
-  margin-top: 16px;
-  max-width: 480px;
-  font-size: 18px;
-  color: rgba(255, 255, 255, 0.75);
-`;
-
-export const Buttons = styled.div`
+export const LandingButtonsGroup = styled.div`
   position: absolute;
   bottom: 195px;
   left: 50%;
@@ -88,29 +87,29 @@ export const Buttons = styled.div`
   display: flex;
   gap: 128px;
   z-index: 3;
+
+  .primaryButtonLanding {
+    padding: 18px 32px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    background: linear-gradient(90deg, #ff5f9e, #8b5cf6);
+  }
+
+  .secondaryButtonLanding {
+    padding: 18px 32px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
-export const PrimaryButton = styled.button`
-  padding: 18px 32px;
-  border-radius: 999px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  color: white;
-  background: linear-gradient(90deg, #ff5f9e, #8b5cf6);
-`;
-
-export const SecondaryButton = styled.button`
-  padding: 18px 32px;
-  border-radius: 999px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  font-size: 16px;
-  color: white;
-  cursor: pointer;
-`;
-
-export const SocialButtons = styled.div`
+export const LandingSocialButtonsGroup = styled.div`
   position: absolute;
   bottom: 140px;
   left: 50%;
@@ -118,26 +117,30 @@ export const SocialButtons = styled.div`
   display: flex;
   gap: 12px;
   z-index: 3;
-`;
 
-export const CircleButton = styled.a`
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  backdrop-filter: blur(6px);
-  transition: all 0.2s ease;
+  .circleButton {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    cursor: pointer;
+    text-decoration: none;
+    backdrop-filter: blur(6px);
+    transition: all 0.2s ease;
 
-  &:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.4);
+    &:hover {
+      transform: translateY(-2px);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.4);
+    }
+
+    a{
+      color: white;
+    }
   }
 `;

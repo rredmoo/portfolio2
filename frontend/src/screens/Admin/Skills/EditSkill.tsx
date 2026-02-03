@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import AdminLayout from "../Components/AdminLayout";
-import MainAdminContainer from "../Components/MainAdminContainer";
+import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { getSkill, updateSkill } from "../../../api/skills";
 import type { Skill } from "../../../api/types";

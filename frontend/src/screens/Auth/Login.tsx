@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { setToken } from "../../auth";
 import { login } from "../../api/auth";
+import { ProjectBackground } from "../Home/Sections/Projects/Projects.styles";
+import { Container } from "../../components/common/CommonStyles";
+import { LoginField } from "./Login.styles";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,14 +20,31 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button>Login</button>
-    </form>
+    <ProjectBackground>
+      <Container>
+        <LoginField>
+          <h1>Login</h1>
+
+          <form onSubmit={handleSubmit}>
+            <input
+              type="email"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+
+            <input
+              type="password"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+
+            <button type="submit">Login</button>
+          </form>
+        </LoginField>
+      </Container>
+    </ProjectBackground>
   );
+
 }

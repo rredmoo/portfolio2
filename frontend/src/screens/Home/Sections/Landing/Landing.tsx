@@ -4,14 +4,8 @@ import {
   LandingContainer,
   LandingBackground,
   LandingContent,
-  TopLabel,
-  LandingHeadline,
-  Subtext,
-  Buttons,
-  PrimaryButton,
-  SecondaryButton,
-  SocialButtons,
-  CircleButton,
+  LandingButtonsGroup,
+  LandingSocialButtonsGroup,
 } from "./Landing.styles";
 import BackgroundParticles from "../../Components/BackgroundParticles";
 import { SceneGridGround } from "./SceneGrid.tsx";
@@ -42,33 +36,42 @@ export default function Landing() {
 
       {/* The rest of the pages UI components */}
       <LandingContent>
-        <TopLabel>FULL-STACK WEB DEVELOPER</TopLabel>
-        <LandingHeadline>
+        <p className="topLable">FULL-STACK WEB DEVELOPER</p>
+        <p className="landingHealine">
           Hi, I’m <span>Dāvids Adamovičs</span>
-        </LandingHeadline>
-        <Subtext>Welcome to my portfolio.</Subtext>
+        </p>
+        <p className="subtext">Welcome to my portfolio.</p>
 
-        <Buttons>
-          <PrimaryButton>View Projects</PrimaryButton>
-          <SecondaryButton>Contact Me</SecondaryButton>
-        </Buttons>
-        <SocialButtons>
-          <CircleButton href="https://github.com/rredmoo" target="_blank">
-            <Icon icon={faSquareGithub} />
-          </CircleButton>
+        <LandingButtonsGroup>
+          <button className="primaryButtonLanding">View Projects</button>
+          <button className="secondaryButtonLanding">Contact Me</button>
+        </LandingButtonsGroup>
+        <LandingSocialButtonsGroup>
+          <button className="circleButton">
+            <a
+              href="https://github.com/rredmoo"
+              target="_blank">
+              <Icon icon={faSquareGithub} />
+            </a>
+          </button>
 
-          <CircleButton
-            href="https://www.linkedin.com/in/d%C4%81vids-adamovi%C4%8Ds-084348306/"
-            target="_blank"
-          >
-            <Icon icon={faSquareLinkedin} />
-          </CircleButton>
+          <button className="circleButton">
+            <a
+              href="https://www.linkedin.com/in/d%C4%81vids-adamovi%C4%8Ds-084348306/"
+              target="_blank">
+              <Icon icon={faSquareLinkedin} />
+            </a>
+          </button>
 
-          <CircleButton href="https://discord.com/users/841674442350133279">
-            <Icon icon={faDiscord} />
-          </CircleButton>
-        </SocialButtons>
+          <button className="circleButton">
+            <a
+              href="https://discord.com/users/841674442350133279"
+              target="_blank">
+              <Icon icon={faDiscord} />
+            </a>
+          </button>
+        </LandingSocialButtonsGroup>
       </LandingContent>
-    </LandingContainer>
+    </LandingContainer >
   );
 }

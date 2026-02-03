@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import AdminLayout from "../Components/AdminLayout";
-import MainAdminContainer from "../Components/MainAdminContainer";
+import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { getProject, updateProject } from "../../../api/projects";
 import type { EditProjectForm, Skill } from "../../../api/types";

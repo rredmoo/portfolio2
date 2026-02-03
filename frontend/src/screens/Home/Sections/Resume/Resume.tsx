@@ -27,7 +27,7 @@ export default function Resume() {
                         <p className="smallText">│   └── Accenture</p>
                         <br />
                     </section>
-                        <h1>Education</h1>
+                    <h1>Education</h1>
                     <section className="resumeSections">
 
                         <p className="subTitleText">├── 📚 First-level professional higher education: “Programming Specialist”</p>
@@ -54,7 +54,7 @@ export default function Resume() {
                         <br />
                     </section>
 
-                        <h1>Languages</h1>
+                    <h1>Languages</h1>
                     <section className="resumeSections">
 
                         <p>
