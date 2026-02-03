@@ -1,5 +1,7 @@
 import { Container, HrPrimary } from "../../../../components/common/CommonStyles";
-import { BoldText, Dot, ResumeBackground, ResumeField, SmallText } from "./Resume.styles";
+import { Icon } from "../../../Admin/Components/Sidebar";
+import { Dot, ResumeBackground, ResumeField } from "./Resume.styles";
+import { faDownload } from '@fortawesome/free-solid-svg-icons'
 
 export default function Resume() {
     return (
@@ -7,53 +9,53 @@ export default function Resume() {
             <HrPrimary />
             <Container>
                 <ResumeField>
-                    <section>
-                        <h2>Work Experiance</h2>
+                    <button className="downloadBtn"><Icon icon={faDownload} />
+                        <span className="tooltipText">Download Resume</span>
+                    </button>
+                    <h1>Work Experiance</h1>
+                    <section className="resumeSections">
 
-                        <BoldText>💼 SIA Azeron</BoldText>
-                        <SmallText>2025 - ongoing</SmallText>
+                        <p className="subTitleText">├── 💼 SIA Azeron </p>
+                        <p className="smallText">│   └── 2025 - ongoing</p>
 
-                        <BoldText>💼 Full Stack Web Developer Internship</BoldText>
-                        <SmallText>2025</SmallText>
-                        <SmallText>Ventspils International Radio Astronomy Center (VSRC)</SmallText>
+                        <p className="subTitleText">├── 💼 Full Stack Web Developer Internship</p>
+                        <p className="smallText">│   └── 2025-2025</p>
+                        <p className="smallText">│   └── Ventspils International Radio Astronomy Center (VSRC)</p>
 
-                        <BoldText>💼 DevOps Internship</BoldText>
-                        <SmallText>2024</SmallText>
-                        <SmallText>Accenture</SmallText>
+                        <p className="subTitleText">├── 💼 DevOps Internship</p>
+                        <p className="smallText">│   └── 2024-2025</p>
+                        <p className="smallText">│   └── Accenture</p>
                         <br />
                     </section>
-                    <section>
-                        <h2>Education</h2>
+                        <h1>Education</h1>
+                    <section className="resumeSections">
 
-                        <SmallText>2023 – 2025</SmallText>
-                        <BoldText>
-                            📚 First-level professional higher education:
-                        </BoldText>
-                        “Programming Specialist”
-                        <SmallText>Ventspils University of Applied Sciences</SmallText>
+                        <p className="subTitleText">├── 📚 First-level professional higher education: “Programming Specialist”</p>
+                        <p className="smallText">│   └── 2023 – 2025</p>
+                        <p className="smallText">│   └── Ventspils University of Applied Sciences</p>
                         <br />
 
-                        <SmallText>2020 – 2023</SmallText>
-                        <BoldText>📚 Secondary education</BoldText>
-                        <SmallText>
-                            Ventspils Secondary School No.4.
+                        <p className="subTitleText">├── 📚 Secondary education</p>
+                        <p className="smallText">│   └── 2020 – 2023</p>
+                        <p className="smallText">
+                            │   └── Ventspils Secondary School No.4.
                             <br />
-                            Advanced subjects:
+                            │   └── Advanced subjects:
                             <br />
-                            “Programming II”
+                            │   └── “Programming II”
                             <br />
-                            “Business English II”
-                        </SmallText>
+                            │   └── “Business English II”
+                        </p>
                         <br />
 
-                        <SmallText>2021 – 2022</SmallText>
-                        <BoldText>🕹️ Game development in Unity</BoldText>
-                        <SmallText>Ventspils Digital Centre (VDC)</SmallText>
+                        <p className="subTitleText">├── 🕹️ Game development in Unity</p>
+                        <p className="smallText">│   └── 2021 – 2022</p>
+                        <p className="smallText">│   └── Ventspils Digital Centre (VDC)</p>
                         <br />
                     </section>
 
-                    <section>
-                        <h2>Languages</h2>
+                        <h1>Languages</h1>
+                    <section className="resumeSections">
 
                         <p>
                             Latvian{" "}

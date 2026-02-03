@@ -46,26 +46,62 @@ export const ResumeField = styled.section`
   margin: 3rem auto;
   box-shadow: 0 0 35px rgba(40, 53, 140, 0.35);
   transition: all 0.3s ease-in-out;
-`;
+  position: relative;
 
-export const SmallText = styled.p`
-  color: #939393;
-  margin: 0;
-`;
+  .downloadBtn {
+    padding: 0.5rem;
+    background-color: gray;
+    border-radius: 12px;
+    position: absolute;
+    cursor: pointer;
+    top: 25px;
+    right: 25px;
 
-export const BoldText = styled.p`
-  color: #d1d1d1;
-  font-weight: 900;
-  margin: 0;
-`;
+    .tooltipText {
+      visibility: hidden;
+      width: 130px;
+      background-color: black;
+      color: #fff;
+      text-align: center;
+      border-radius: 6px;
+      padding: 5px 0;
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
 
-export const ResumeSkills = styled.div`
-  margin-top: 20px;
-  color: #ececec;
-`;
+    &:hover .tooltipText {
+      visibility: visible;
+    }
+  }
 
-export const Skill = styled.div`
-  margin-bottom: 10px;
+  .resumeSections{
+    margin: 1rem 2rem 0rem;
+  }
+
+  .smallText {
+    color: #939393;
+    margin: 0;
+    font-size: 0.9rem;
+    margin-left: 2rem;
+  }
+
+  .subTitleText {
+    color: #d1d1d1;
+    font-weight: 400;
+    margin: 0;
+    font-size: 0.95rem;
+  }
+
+  .tree {
+    font-family: "JetBrains Mono", monospace;
+    color: #d1d1d1;
+    background: transparent;
+    margin: 0;
+    white-space: pre;
+  }
 `;
 
 export const Dot = styled.span<{ active?: boolean }>`

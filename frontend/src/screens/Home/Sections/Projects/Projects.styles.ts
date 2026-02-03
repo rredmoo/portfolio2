@@ -109,7 +109,7 @@ export const Card = styled.article`
 
   h1 {
     margin-bottom: 0.5rem;
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     font-weight: 600;
   }
 
@@ -133,7 +133,7 @@ export const Card = styled.article`
     padding: 0.4rem 0.6rem;
     border-radius: 6px;
     background-color: rgba(232, 232, 232, 0.22);
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     text-align: center;
     white-space: nowrap;
   }
@@ -146,21 +146,17 @@ export const Card = styled.article`
   }
 
   a {
-    position: absolute; /* add */
-    bottom: 20px; /* adjust as needed */
+    position: absolute;
+    bottom: 20px;
     left: 20px;
     text-decoration: none;
-  }
-
-  a:hover {
-    text-decoration: underline;
   }
 
   a button {
     background-color: transparent;
     border: solid 2px rgba(232, 232, 232, 0.2);
     border-radius: 12px;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.6rem;
     color: var(--color-text);
   }
 `;
