@@ -1,9 +1,12 @@
 # root files
 .env
 env
+<<<<<<< HEAD
 
 # MacOS
 .DS_Store
+=======
+>>>>>>> 0b7a0d6 (little messup)
 
 # ./backend for laravel
 backend/vendor/
@@ -22,3 +25,4 @@ frontend/dist/
 app-data/
 **/*.sqlite
 **/settings*.cfg
+
