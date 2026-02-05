@@ -1,5 +1,6 @@
 # root files
 .env
+env
 
 # ./backend for laravel
 backend/vendor/

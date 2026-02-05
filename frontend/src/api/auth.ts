@@ -2,17 +2,11 @@ import { apiFetch } from "./client";
 import type { User } from "./types";
 
 export async function login(email: string, password: string) {
-  const res = await fetch("/login", {
+  console.log("Login started")
+  return apiFetch<{ token: string }>("/login", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   });
-
-  if (!res.ok) {
-    throw new Error("Login failed");
-  }
-
-  return res.json() as Promise<{ token: string }>;
 }
 
 export async function me() {
