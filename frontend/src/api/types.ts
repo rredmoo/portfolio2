@@ -35,6 +35,7 @@ export interface Skill {
     title: string;
     category: string;
     level: number;
+    imagePath: string;
 }
 
 // Laravels pagination

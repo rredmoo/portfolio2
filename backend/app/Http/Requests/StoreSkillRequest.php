@@ -25,7 +25,7 @@ class StoreSkillRequest extends FormRequest
             'title' => 'required|string|max:255',
             'category' => 'required|string|max:255',
             'level' => 'required|integer|min:1|max:5',
-            'icon' => 'nullable|image|max:2048'
+            'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
         ];
     }
 }

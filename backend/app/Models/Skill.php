@@ -10,7 +10,7 @@ class Skill extends Model
         'title',
         'category',
         'level',
-        'icon'
+        'imagePath'
     ];
 
     public function projects()

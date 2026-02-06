@@ -2,6 +2,9 @@
 .env
 env
 
+# MacOS
+.DS_Store
+
 # ./backend for laravel
 backend/vendor/
 backend/.env

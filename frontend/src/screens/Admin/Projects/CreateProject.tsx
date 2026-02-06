@@ -25,7 +25,6 @@ export default function CreateProject() {
   }));
 
   const handleSubmit = async (e: React.FormEvent) => {
-    // Testing out formData insstead of the old api
     e.preventDefault();
 
     const formData = new FormData();

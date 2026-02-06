@@ -1,6 +1,7 @@
 import Resume from './Sections/Resume/Resume';
 import Landing from './Sections/Landing/Landing';
 import Projects from './Sections/Projects/Projects';
+import Skills from './Sections/Skills/Skills';
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Landing />
       <Projects />
       <Resume />
+      <Skills />
     </main>
   );
 }

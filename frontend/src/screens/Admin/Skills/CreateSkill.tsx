@@ -4,6 +4,7 @@ import Sidebar from "../Components/Sidebar";
 import { createSkill } from "../../../api/skills";
 
 export default function CreateSkill() {
+  const [image, setImage] = useState<File | null>(null);
   const [skill, setSkill] = useState({
     title: "",
     category: "",
@@ -13,14 +14,17 @@ export default function CreateSkill() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    try {
-      const created = await createSkill(skill);
-      console.log(created);
+    const formData = new FormData();
 
-      setSkill({ title: "", category: "", level: 1 });
-    } catch (error) {
-      console.error(error);
+    formData.append("title", skill.title);
+    formData.append("category", skill.category);
+    formData.append("level", String(skill.level));
+
+    if (image) {
+      formData.append("image", image);
     }
+
+    await createSkill(formData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,19 +45,44 @@ export default function CreateSkill() {
           <form onSubmit={handleSubmit}>
             <label>
               Title:
-              <input type="text" name="title" value={skill.title} onChange={handleChange}/>
+              <input
+                type="text"
+                name="title"
+                value={skill.title}
+                onChange={handleChange}
+              />
             </label>
             <br />
 
             <label>
               Category:
-              <input type="text" name="category" value={skill.category} onChange={handleChange}/>
+              <input
+                type="text"
+                name="category"
+                value={skill.category}
+                onChange={handleChange}
+              />
             </label>
             <br />
 
             <label>
               Level:
-              <input type="number" name="level" value={skill.level} onChange={handleChange}/>
+              <input
+                type="number"
+                name="level"
+                value={skill.level}
+                onChange={handleChange}
+              />
+            </label>
+            <br />
+
+            <label>
+              Skill Image:
+              <input
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files?.[0] || null)}
+              />
             </label>
             <br />
 

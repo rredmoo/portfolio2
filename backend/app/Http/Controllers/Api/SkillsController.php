@@ -8,6 +8,7 @@ use App\Http\Requests\StoreSkillRequest;
 use App\Http\Requests\UpdateSkillRequest;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SkillsController extends Controller
 {
@@ -27,9 +28,11 @@ class SkillsController extends Controller
     public function store(StoreSkillRequest $request)
     {
         $data = $request->validated();
-        if ($request->hasFile('icon')) {
-            $data['icon'] = $request->file('icon')->store('skills', 'public');
+
+        if ($request->hasFile('image')) {
+            $data['imagePath'] = $request->file('image')->store('skills', 'public');
         }
+
         Cache::forget('skills_list');
         return Skill::create($data);
     }
@@ -42,9 +45,14 @@ class SkillsController extends Controller
     public function update(UpdateSkillRequest $request, Skill $skill)
     {
         $data = $request->validated();
-        if ($request->hasFile('icon')) {
-            $data['icon'] = $request->file('icon')->store('skills', 'public');
+
+        if ($request->hasFile('image')) {
+            if ($skill->imagePath) {
+                Storage::disk('public')->delete($skill->imagePath);
+            }
+            $data['imagePath'] = $request->file('image')->store('skills', 'public');
         }
+        
         $skill->update($data);
         Cache::forget('skills_list');
         return $skill;

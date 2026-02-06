@@ -15,10 +15,10 @@ export function getSkill(id: number) {
 }
 
 // Create a new skill
-export function createSkill(skill: Omit<Skill, "id">) {
-  return apiFetch<Skill>(`/skills`, {
+export function createSkill(formData: FormData) {
+  return apiFetch(`/skills`, {
     method: "POST",
-    body: JSON.stringify(skill),
+    body: formData,
   });
 }
 
