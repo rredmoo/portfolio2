@@ -1,8 +1,8 @@
 import { apiFetch } from "./client";
 import type { Skill, PaginatedResponse } from './types';
 
-
-//  Get all skills
+// REPLACED WITH GRAPHQL SKILLS QUERY IN
+//  Get all skills 
 export default function getSkills(
     page = 1
 ): Promise<PaginatedResponse<Skill>> {

@@ -1,0 +1,18 @@
+"======= SKILLS ========"
+type Skill {
+  id: ID!
+  title: String!
+  category: String!
+  level: Int!
+  imagePath: String
+  created_at: DateTime!
+  updated_at: DateTime!
+}
+
+"Display skills in portfolio and admin menu"
+type Query {
+  skills: [Skill!]! @paginate(type: "PAGINATOR")
+}
+
+
+
