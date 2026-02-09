@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
-import { getFeaturedProjects } from "../../../../api/projects";
+import { useState } from "react";
+import { useQuery } from "@apollo/client/react";
 import type { Project } from "../../../../api/types";
 import ProjectCard from "./ProjectCard.tsx";
 import {
@@ -16,18 +16,37 @@ import {
   HrPrimary,
   H1PrimaryTitle,
 } from "../../../../components/common/CommonStyles.ts";
+import { GET_PROJECTS } from "../../../../api/projects.graphql.ts";
+
+type ProjectQueryResponse = {
+  projects: {
+    data: Project[];
+    paginatorInfo: {
+      currentPage: number;
+      lastPage: number;
+    };
+  };
+};
 
 export default function Projects() {
-  const [projects, setProjects] = useState<Project[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [lastPage, setLastPage] = useState(1);
+  const { data, loading, error } = useQuery<ProjectQueryResponse>(
+    GET_PROJECTS,
+    {
+      variables: { first: 3, page: currentPage },
+    },
+  );
 
-  useEffect(() => {
-    getFeaturedProjects(currentPage).then((response) => {
-      setProjects(response.data);
-      setLastPage(response.last_page);
-    });
-  }, [currentPage]);
+  if (loading) return <p>Loading...</p>;
+  if (error) {
+    console.log(error);
+    return <p>Error loading projects</p>;
+  }
+
+  if (!data) return null;
+
+  const projects = data.projects.data;
+  const lastPage = data.projects.paginatorInfo.lastPage;
 
   return (
     <>

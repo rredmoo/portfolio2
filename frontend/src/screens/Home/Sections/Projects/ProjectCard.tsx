@@ -51,7 +51,6 @@ export default function ProjectCard({ project, type = "right" }: ProjectCardType
           </span>
         ))}
       </div>
-      <p>Updated {daysSinceCreation(project.updated_at)} days ago</p>
       {/* If project contains a link, the button will be created, if its NULL, nothing will be displayed */}
       {project.link && (
         <a href={project.link} target="_blank" rel="noopener noreferrer">

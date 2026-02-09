@@ -1,18 +1,35 @@
-"======= SKILLS ========"
 type Skill {
-  id: ID!
-  title: String!
-  category: String!
-  level: Int!
-  imagePath: String
-  created_at: DateTime!
-  updated_at: DateTime!
+    id: ID!
+    title: String!
+    category: String!
+    level: Int!
+    imagePath: String
+    createdAt: DateTime!
+    updatedAt: DateTime!
 }
 
-"Display skills in portfolio and admin menu"
+type ProjectSkill {
+    id: ID!
+    title: String!
+}
+
+scalar DateTime
+    @scalar(class: "Nuwave\\Lighthouse\\Schema\\Types\\Scalars\\DateTime")
+
+type Project {
+    id: ID!
+    title: String!
+    shortDescription: String! @rename(attribute: "short_description")
+    description: String!
+    link: String!
+    isFeatured: Boolean! @rename(attribute: "is_featured")
+    skills: [ProjectSkill!]! @belongsToMany
+    imagePath: String!
+    createdAt: DateTime! @rename(attribute: "created_at")
+    updatedAt: DateTime! @rename(attribute: "updated_at")
+}
+
 type Query {
-  skills: [Skill!]! @paginate(type: "PAGINATOR")
+    skills: [Skill!]! @paginate(type: "PAGINATOR")
+    projects: [Project!]! @paginate(type: "PAGINATOR")
 }
-
-
-
