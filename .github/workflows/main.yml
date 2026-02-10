@@ -1,38 +1,63 @@
-name: Sync with VPS
+name: Deploy to VPS
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: SSH deploy
+      - name: Sync with VPS using SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
+            set -e
+            START=$(date +%s)
+
             cd ~/portfolio2
+
+            echo "Pulling latest git commits..."
             git pull origin master
             git submodule update --init --recursive
 
+            echo "running npm build..."
+            cd frontend
+            npm ci
+            npm run build
+            cd ..
 
+            echo "Rebuilding docker containers..."
             docker compose down
             docker compose up -d --build
 
+            echo "Waiting for DB..."
             until docker compose exec mysql mysqladmin ping -h mysql --silent; do
               sleep 2
             done
 
-            # build frontend and backend so it updates prod
-            docker compose exec frontend npm ci
-            docker compose exec frontend npm run build
+            echo "Running all the small backend stuff..."
             docker compose exec backend php artisan migrate --force
-            docker compose exec backend php artisan optimize
+            docker compose exec backend php artisan storage:link || true
+            docker compose exec backend php artisan optimize:clear
+            docker compose exec backend php artisan config:cache
+            docker compose exec backend php artisan route:cache
 
-            # reload nginx
+            echo "Restarting nginx..."
             docker compose restart nginx
+
+            END=$(date +%s)
+            DURATION=$((END - START))
+
+            echo "Deploy finished in ${DURATION}s"
+
+            # discord notification
+            if [ ! -z "${{ secrets.DISCORD_WEBHOOK }}" ]; then
+              curl -H "Content-Type: application/json" \
+              -d "{\"content\":\"✅ Prod merge was succesfull, building time: ${DURATION}s\"}" \
+              ${{ secrets.DISCORD_WEBHOOK }}
+            fi
