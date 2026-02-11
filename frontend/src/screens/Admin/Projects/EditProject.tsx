@@ -6,6 +6,7 @@ import { getProject, updateProject } from "../../../api/projects";
 import type { EditProjectForm, Skill } from "../../../api/types";
 import Select from "react-select";
 import getSkills from "../../../api/skills";
+import { FormWrapper, FormField, FormLabel, FormInput, FormTextarea, CheckboxRow, SubmitButton } from "../Components/DataForms.styled";
 
 export default function EditProject() {
   const { id } = useParams();
@@ -68,61 +69,74 @@ export default function EditProject() {
       <MainAdminContainer>
         <h1>Edit Project</h1>
 
-        <form onSubmit={handleSubmit}>
-          <input
-            name="title"
-            value={project.title}
-            onChange={handleChange}
-            placeholder="Title"
-          />
+        <FormWrapper onSubmit={handleSubmit}>
+          <FormField>
+            <FormLabel>Title</FormLabel>
+            <FormInput
+              name="title"
+              value={project.title}
+              onChange={handleChange}
+            />
+          </FormField>
 
-          <input
-            name="short_description"
-            value={project.short_description}
-            onChange={handleChange}
-            placeholder="Short description"
-          />
+          <FormField>
+            <FormLabel>Short Description</FormLabel>
+            <FormInput
+              name="short_description"
+              value={project.short_description}
+              onChange={handleChange}
+            />
+          </FormField>
 
-          <textarea
-            name="description"
-            value={project.description}
-            onChange={handleChange}
-            placeholder="Description"
-          />
+          <FormField>
+            <FormLabel>Description</FormLabel>
+            <FormTextarea
+              name="description"
+              value={project.description}
+              onChange={handleChange}
+            />
+          </FormField>
 
-          <input
-            name="link"
-            value={project.link ?? ""}
-            onChange={handleChange}
-            placeholder="Project link"
-          />
+          <FormField>
+            <FormLabel>Project Link</FormLabel>
+            <FormInput
+              name="link"
+              value={project.link ?? ""}
+              onChange={handleChange}
+            />
+          </FormField>
 
-          <input 
-            type="checkbox" 
-            name="is_featured" 
-            checked={project.is_featured}
-            onChange={handleChange} />
+          <CheckboxRow>
+            <input
+              type="checkbox"
+              name="is_featured"
+              checked={project.is_featured}
+              onChange={handleChange}
+            />
+            <FormLabel>Feature in portfolio?</FormLabel>
+          </CheckboxRow>
 
-          <label>Skills:</label>
-          <Select
-            isMulti
-            options={optionSkill}
-            value={optionSkill.filter((o) => project.skills.includes(o.value))}
-            placeholder="Search skills..."
-            onChange={(selected) =>
-              setProject((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      skills: selected.map((s) => s.value),
-                    }
-                  : prev,
-              )
-            }
-          />
+          <FormField>
+            <FormLabel>Skills</FormLabel>
+            <Select
+              isMulti
+              options={optionSkill}
+              value={optionSkill.filter((o) =>
+                project.skills.includes(o.value),
+              )}
+              placeholder="Search skills..."
+              onChange={(selected) =>
+                setProject((prev) =>
+                  prev
+                    ? { ...prev, skills: selected.map((s) => s.value) }
+                    : prev,
+                )
+              }
+            />
+          </FormField>
 
-          <button type="submit">Save</button>
-        </form>
+          <SubmitButton type="submit">Save Changes</SubmitButton>
+        </FormWrapper>
       </MainAdminContainer>
     </AdminLayout>
   );

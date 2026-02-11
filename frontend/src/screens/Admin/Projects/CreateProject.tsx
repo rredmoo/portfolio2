@@ -5,6 +5,15 @@ import Sidebar from "../Components/Sidebar";
 import Select from "react-select";
 import getSkills from "../../../api/skills";
 import type { Skill } from "../../../api/types";
+import {
+  CheckboxRow,
+  FormField,
+  FormInput,
+  FormLabel,
+  FormTextarea,
+  FormWrapper,
+  SubmitButton,
+} from "../Components/DataForms.styled";
 
 export default function CreateProject() {
   // states
@@ -44,14 +53,16 @@ export default function CreateProject() {
     await createProject(formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
 
     setProject((prev) => ({
       ...prev,
       [name]:
-        type === "checkbox"
-          ? checked
+        e.target instanceof HTMLInputElement && e.target.type === "checkbox"
+          ? e.target.checked
           : value,
     }));
   };
@@ -64,85 +75,84 @@ export default function CreateProject() {
       <AdminLayout>
         <Sidebar />
         <MainAdminContainer>
-          <h1>Create a new project</h1>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Title:
-              <input
+          <FormWrapper onSubmit={handleSubmit}>
+            <h1>Create a new project</h1>
+
+            <FormField>
+              <FormLabel>Title</FormLabel>
+              <FormInput
                 type="text"
                 name="title"
                 value={project.title}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              Short Desc:
-              <input
+            <FormField>
+              <FormLabel>Short Desc</FormLabel>
+              <FormInput
                 type="text"
                 name="short_description"
                 value={project.short_description}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              description:
-              <input
-                type="text"
+            <FormField>
+              <FormLabel>Description</FormLabel>
+              <FormTextarea
                 name="description"
                 value={project.description}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              link:
-              <input
+            <FormField>
+              <FormLabel>Link</FormLabel>
+              <FormInput
                 type="text"
                 name="link"
                 value={project.link}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              Feature it in portfolio?
+            <CheckboxRow>
               <input
                 type="checkbox"
                 name="is_featured"
+                checked={project.is_featured}
                 onChange={handleChange}
               />
-            </label>
-            <br />
-            <label>
-              Project Image:
-              <input
+              <FormLabel>Feature it?</FormLabel>
+            </CheckboxRow>
+
+            <FormField>
+              <FormLabel>Project Image</FormLabel>
+              <FormInput
                 type="file"
                 accept="image/*"
                 onChange={(e) => setImage(e.target.files?.[0] || null)}
               />
-            </label>
-            <br />
-            <label>Skills:</label>
-            <Select
-              isMulti
-              options={optionSkill}
-              placeholder="Search skills..."
-              onChange={(selected) =>
-                setProject((prev) => ({
-                  ...prev,
-                  skills: selected.map((s) => s.value),
-                }))
-              }
-            />
+            </FormField>
 
-            <button type="submit">Submit</button>
-          </form>
+            <FormField>
+              <FormLabel>Skills</FormLabel>
+              <Select
+                isMulti
+                options={optionSkill}
+                placeholder="Search skills..."
+                onChange={(selected) =>
+                  setProject((prev) => ({
+                    ...prev,
+                    skills: selected.map((s) => s.value),
+                  }))
+                }
+              />
+            </FormField>
+
+            <SubmitButton type="submit">Submit</SubmitButton>
+          </FormWrapper>
         </MainAdminContainer>
       </AdminLayout>
     </>

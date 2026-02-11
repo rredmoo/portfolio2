@@ -1,23 +1,22 @@
 import { apiFetch } from "./client";
 import type {
   Project,
-  PaginatedResponse,
   // CreateProjectForm,
   EditProjectForm,
 } from "./types";
 
 //  Get all projects (used in admin panel and public lists)
-export function getProjects(page = 1): Promise<PaginatedResponse<Project>> {
-  return apiFetch<PaginatedResponse<Project>>(`/projects?page=${page}`);
-}
+// export function getProjects(page = 1): Promise<PaginatedResponse<Project>> {
+//   return apiFetch<PaginatedResponse<Project>>(`/projects?page=${page}`);
+// }
 // Get all featured projects, where is_featured=1 (used in public portfolio)
-export function getFeaturedProjects(
-  page = 1,
-): Promise<PaginatedResponse<Project>> {
-  return apiFetch<PaginatedResponse<Project>>(
-    `/projects?is_featured=1&page=${page}`,
-  );
-}
+// export function getFeaturedProjects(
+//   page = 1,
+// ): Promise<PaginatedResponse<Project>> {
+//   return apiFetch<PaginatedResponse<Project>>(
+//     `/projects?is_featured=1&page=${page}`,
+//   );
+// }
 
 // Get a specific project by its ID
 export function getProject(id: number) {

@@ -5,7 +5,7 @@ import dadamov from "../../../../public/dadamov.png";
 import { useNavigate } from "react-router-dom";
 
 const SidebarWrapper = styled.section`
-      width: 250px;
+      width: 225px;
       height: 100dvh;
       background-color: var(--color-bg-secondary);
       overflow: auto;

@@ -9,6 +9,7 @@ export const AdminLayout = styled.div`
 export const MainAdminContainer = styled.section`
   max-width: 1624px;
   width: 100%;
+  padding: 2rem;
   margin: 2rem auto;
   background: var(--color-bg);
   display: block;
