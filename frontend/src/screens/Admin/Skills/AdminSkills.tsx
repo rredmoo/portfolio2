@@ -1,46 +1,56 @@
 // imported libs
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useQuery } from "@apollo/client/react";
 // components
 import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import DataTable from "../Components/DataTable";
 import { Icon } from "../Components/Sidebar";
+import Pagination from "../../../components/common/Pagination";
 // api
-import getSkills from "../../../api/skills";
+// import getSkills from "../../../api/skills";
+import { GET_SKILLS } from "../../../api/skills.graphql";
 import type { Skill } from "../../../api/types";
 import { deleteSkill } from "../../../api/skills";
 
-import {
-  BtnAction,
-  DataTableActionContainer,
-} from "../Components/BtnAction";
+import { BtnAction, DataTableActionContainer } from "../Components/BtnAction";
 import Loadable from "../../../components/common/Loadable";
 
-export default function AdminSkills() {
-  const [skills, setSkills] = useState<Skill[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const loadSkills = async () => {
-      try {
-        const res = await getSkills();
-        setSkills(res.data);
-      } finally {
-        setLoading(false);
-      }
+type SkillsQueryResponse = {
+  skills: {
+    data: Skill[];
+    paginatorInfo: {
+      currentPage: number;
+      lastPage: number;
     };
+  };
+};
 
-    loadSkills();
-  }, []);
+export default function AdminSkills() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const navigate = useNavigate();
+  // const [loading, setLoading] = useState(true);
+
+  // graphql fetch
+  const { data, loading, error } = useQuery<SkillsQueryResponse>(GET_SKILLS, {
+    variables: { first: 3, page: currentPage },
+  });
+
+  if (loading) return <Loadable loading={true} children={undefined} />;
+  if (error) {
+    console.log(error);
+    return <p>DEBUG: Error loading projects</p>;
+  }
+
+  const skills = data?.skills.data ?? [];
+  const lastPage = data?.skills.paginatorInfo.lastPage ?? 1;
 
   const handleDelete = async (id: number) => {
     await deleteSkill(id);
-    setSkills((prev) => prev.filter((s) => s.id !== id));
   };
 
-  const navigate = useNavigate();
   const navCreateSkillURL = "/admin/create/skill";
   return (
     <>
@@ -58,6 +68,12 @@ export default function AdminSkills() {
               data={skills}
               editPath={(skill) => `/admin/skills/${skill.id}/edit`}
               onDelete={handleDelete}
+            />
+            <Pagination
+              currentPage={currentPage}
+              lastPage={lastPage}
+              onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+              onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
             />
           </Loadable>
         </MainAdminContainer>
