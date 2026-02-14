@@ -1,4 +1,4 @@
-import { useQuery } from "@apollo/client/react";
+import { useMutation, useQuery } from "@apollo/client/react";
 import { useNavigate } from "react-router-dom";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
@@ -8,8 +8,11 @@ import DataTable from "../Components/DataTable";
 import { Icon } from "../Components/Sidebar";
 
 import type { Project } from "../../../api/types";
-import { deleteProject } from "../../../api/projects";
-import { GET_PROJECTS_ADMIN } from "../../../api/projects.graphql";
+import {
+  DELETE_PROJECT,
+  GET_PROJECTS,
+  GET_PROJECTS_ADMIN,
+} from "../../../api/projects.graphql";
 
 import { BtnAction, DataTableActionContainer } from "../Components/BtnAction";
 import Loadable from "../../../components/common/Loadable";
@@ -30,6 +33,14 @@ export default function AdminProjects() {
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
+  const [deleteSkillMutation] = useMutation(DELETE_PROJECT);
+  const handleDelete = async (id: number) => {
+    await deleteSkillMutation({
+      variables: { id },
+      refetchQueries: [GET_PROJECTS],
+    });
+  };
+  
   // graphql fetch
   const { data, loading, error } = useQuery<ProjectsQueryResponse>(
     GET_PROJECTS_ADMIN,
@@ -37,10 +48,6 @@ export default function AdminProjects() {
       variables: { first: 3, page: currentPage },
     },
   );
-
-  const handleDelete = async (id: number) => {
-    await deleteProject(id);
-  };
 
   if (loading) return <p>Loading...</p>;
   if (error) {

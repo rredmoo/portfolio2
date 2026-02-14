@@ -42,3 +42,12 @@ export const GET_PROJECTS_ADMIN = gql`
   }
 `;
 
+// used in admin panel to delete projetcs
+export const DELETE_PROJECT = gql`
+  mutation DeleteProject($id: ID!) {
+    deleteProject(id: $id) {
+      id
+    }
+  }
+`;
+

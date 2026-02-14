@@ -33,3 +33,8 @@ type Query {
     skills: [Skill!]! @paginate(type: "PAGINATOR")
     projects: [Project!]! @paginate(type: "PAGINATOR")
 }
+
+type Mutation {
+    deleteSkill(id: ID! @whereKey): Skill @delete
+    deleteProject(id: ID! @whereKey): Project @delete
+}

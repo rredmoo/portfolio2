@@ -13,7 +13,8 @@ import Pagination from "../../../components/common/Pagination";
 // import getSkills from "../../../api/skills";
 import { GET_SKILLS } from "../../../api/skills.graphql";
 import type { Skill } from "../../../api/types";
-import { deleteSkill } from "../../../api/skills";
+import { useMutation } from "@apollo/client/react";
+import { DELETE_SKILL } from "../../../api/skills.graphql";
 
 import { BtnAction, DataTableActionContainer } from "../Components/BtnAction";
 import Loadable from "../../../components/common/Loadable";
@@ -38,7 +39,15 @@ export default function AdminSkills() {
     variables: { first: 3, page: currentPage },
   });
 
-  if (loading) return <Loadable loading={true} children={undefined} />;
+  const [deleteSkillMutation] = useMutation(DELETE_SKILL);
+  const handleDelete = async (id: number) => {
+    await deleteSkillMutation({
+      variables: { id },
+      refetchQueries: [GET_SKILLS],
+    });
+  };
+  
+  if (loading) return <p>loading</p>;
   if (error) {
     console.log(error);
     return <p>DEBUG: Error loading projects</p>;
@@ -47,9 +56,6 @@ export default function AdminSkills() {
   const skills = data?.skills.data ?? [];
   const lastPage = data?.skills.paginatorInfo.lastPage ?? 1;
 
-  const handleDelete = async (id: number) => {
-    await deleteSkill(id);
-  };
 
   const navCreateSkillURL = "/admin/create/skill";
   return (

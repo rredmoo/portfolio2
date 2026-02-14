@@ -16,3 +16,12 @@ export const GET_SKILLS = gql`
     }
   }
 `;
+
+// used in admin panel to delete skills
+export const DELETE_SKILL = gql`
+  mutation DeleteSkill($id: ID!) {
+    deleteSkill(id: $id) {
+      id
+    }
+  }
+`;
