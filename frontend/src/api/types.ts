@@ -38,6 +38,14 @@ export interface Skill {
     imagePath: string;
 }
 
+export interface ServerStats {
+  serverStats: {
+    cpuUsage: number;
+    memoryUsage: number;
+    currentTime: string;
+  };
+};
+
 // Laravels pagination
 export interface PaginatedResponse<T> {
     data: T[];

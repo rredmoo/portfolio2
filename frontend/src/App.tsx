@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./screens/Home/Home";
 import Login from "./screens/Auth/Login";
-import Admin from "./screens/Admin/Dashboard/AdminDashboard";
+import AdminDashboard from "./screens/Admin/Dashboard/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminSkills from "./screens/Admin/Skills/AdminSkills";
 import CreateSkill from "./screens/Admin/Skills/CreateSkill";
@@ -19,7 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Protected Routes */}
-        <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
+        <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>}/>
         <Route path="/admin/skills" element={<ProtectedRoute><AdminSkills /></ProtectedRoute>}/>
         <Route path="/admin/projects" element={<ProtectedRoute><AdminProjects /></ProtectedRoute>}/>
         <Route path="/admin/create/skill" element={<ProtectedRoute><CreateSkill /></ProtectedRoute>}/>

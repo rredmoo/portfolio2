@@ -31,8 +31,8 @@ export function updateSkill(id: number, skill: Omit<Skill, "id">) {
 }
 
 // Delete a skill
-export function deleteSkill(id: number) {
-  return apiFetch(`/skills/${id}`, {
-    method: "DELETE",
-  });
-}
+// export function deleteSkill(id: number) {
+//   return apiFetch(`/skills/${id}`, {
+//     method: "DELETE",
+//   });
+// }

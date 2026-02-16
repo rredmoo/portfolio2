@@ -39,8 +39,8 @@ export function updateProject(id: number, payload: EditProjectForm) {
 }
 
 // Delete a project
-export function deleteProject(id: number) {
-  return apiFetch(`/projects/${id}`, {
-    method: "DELETE",
-  });
-}
+// export function deleteProject(id: number) {
+//   return apiFetch(`/projects/${id}`, {
+//     method: "DELETE",
+//   });
+// }
