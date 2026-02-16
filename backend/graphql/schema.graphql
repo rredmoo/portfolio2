@@ -29,9 +29,16 @@ type Project {
     updatedAt: DateTime! @rename(attribute: "updated_at")
 }
 
+type ServerStats {
+    cpuUsage: Float!
+    currentTime: DateTime!
+}
+
 type Query {
     skills: [Skill!]! @paginate(type: "PAGINATOR")
     projects: [Project!]! @paginate(type: "PAGINATOR")
+    serverStats: ServerStats!
+        @field(resolver: "App\\GraphQL\\Queries\\ServerStats")
 }
 
 type Mutation {
