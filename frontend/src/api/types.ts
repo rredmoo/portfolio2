@@ -9,7 +9,7 @@ export interface Project {
     is_featured: boolean;
     imagePath: string;
     skills: Skill[];
-    created_at: string;
+    createdAt: string;
     updated_at: string;
 }
 

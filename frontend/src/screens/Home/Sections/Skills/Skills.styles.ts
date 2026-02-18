@@ -16,7 +16,7 @@ export const Card = styled.article`
   transition: background-color 0.6s;
 
   &:hover {
-    background-color: rgba(232, 232, 232, 0.22);
+    background-color: rgba(28, 32, 50);
   }
 
   h1 {

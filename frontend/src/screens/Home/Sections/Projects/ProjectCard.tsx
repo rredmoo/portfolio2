@@ -23,7 +23,7 @@ function DescriptionCharLimit(text: string, limit: number) {
 
 export default function ProjectCard({ project, type = "right" }: ProjectCardTypes) {
   const rightCardLimitCHAR = 55; // Right side cards (in projects grid) have a rightCardLimitCHAR amount of char limit before "... read more" is applied
-  const leftCardLimitCHAR = 150; // Same for left side, but a higher char limit, because the card is longer
+  const leftCardLimitCHAR = 400; // Same for left side, but a higher char limit, because the card is longer
 
   const limit = type === "left" ? leftCardLimitCHAR : rightCardLimitCHAR;
   const {text, charLimit} = DescriptionCharLimit(project.description, limit);
@@ -31,7 +31,7 @@ export default function ProjectCard({ project, type = "right" }: ProjectCardType
   return (
     <Card>
       <h1>
-        {project.title} ( {daysSinceCreation(project.created_at)} days ago)
+        {project.title} ( {daysSinceCreation(project.createdAt)} days ago)
       </h1>
       {/* <p>{project.short_description}</p> Displayed in admin panel */}
       <p className="projectDescriptionPublic">
@@ -54,7 +54,7 @@ export default function ProjectCard({ project, type = "right" }: ProjectCardType
       {/* If project contains a link, the button will be created, if its NULL, nothing will be displayed */}
       {project.link && (
         <a href={project.link} target="_blank" rel="noopener noreferrer">
-          <button>View Project</button>
+          <button>View Docs</button>
         </a>
       )}
     </Card>

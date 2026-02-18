@@ -68,7 +68,7 @@ export const RightColumn = styled.div`
   }
 
   & img {
-    height: clamp(110px, 12vw, 155px);
+    height: clamp(90px, 12vw, 125px);
   }
 `;
 
@@ -98,9 +98,10 @@ export const Card = styled.article`
   width: 100%;
   max-width: min(100%, 46rem);
   transition: background-color 0.6s;
+  padding-bottom: 3rem;
 
   &:hover {
-    background-color: rgba(232, 232, 232, 0.22);
+    background-color: rgba(28, 32, 50);
   }
 
   article {
@@ -158,5 +159,13 @@ export const Card = styled.article`
     border-radius: 12px;
     padding: 0.4rem 0.6rem;
     color: var(--color-text);
+    transition:
+      background-color 0.3s,
+      border-color 0.3s;
+  }
+
+  a button:hover {
+    background-color: rgba(232, 232, 232, 0.08);
+    border-color: rgba(232, 232, 232, 0.35);
   }
 `;
