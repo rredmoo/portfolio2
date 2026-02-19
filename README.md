@@ -10,6 +10,9 @@ The project itself is divided into 3 pieces:
 - Admin View ( Showcasing admin pages, including CRUD functions for various data models, servers dashboard for CPU usage, memory etc, Mailer API and so on )
 - Wiki ( Self hosted documentation sector )
 
+<img width="1276" height="680" alt="Screenshot 2026-02-19 at 11 32 59" src="https://github.com/user-attachments/assets/2777a28f-5604-48f3-880d-2dde96bf1a7d" />
+<img width="1284" height="658" alt="Screenshot 2026-02-19 at 11 31 37" src="https://github.com/user-attachments/assets/cc222839-d96e-4c39-b71f-f6cb3f4d663b" />
+
 The application runs as multiple Docker containers:
 <img width="2406" height="1514" alt="image" src="https://github.com/user-attachments/assets/4c5f56e5-f13f-4b09-b198-4953e69418a6" />
 
