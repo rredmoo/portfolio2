@@ -35,8 +35,8 @@ type ServerStats {
 }
 
 type Query {
-    skills: [Skill!]! @paginate(type: "PAGINATOR")
-    projects: [Project!]! @paginate(type: "PAGINATOR")
+    skills: [Skill!]! @paginate(type: "PAGINATOR") @cache(maxAge: 600)
+    projects: [Project!]! @paginate(type: "PAGINATOR") @cache(maxAge: 600)
     serverStats: ServerStats!
         @field(resolver: "App\\GraphQL\\Queries\\ServerStats")
 }

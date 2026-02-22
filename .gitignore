@@ -24,3 +24,8 @@ app-data/
 **/*.sqlite
 **/settings*.cfg
 
+# dev
+# dev nginx config
+nginx/nginx.dev.conf 
+# removed ssl certificates for dev
+docker-compose.yaml
