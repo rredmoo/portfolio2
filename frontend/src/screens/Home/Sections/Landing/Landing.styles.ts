@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const LandingContainer = styled.section`
   position: relative;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
   background-color: var(--bg-dark, #0b0f1a);
 `;
 
@@ -40,15 +41,18 @@ export const LandingBackground = styled.div`
 `;
 
 export const LandingContent = styled.div`
+  flex: 1;
   position: relative;
   z-index: 3;
-  height: 100%;
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  padding: 100px 24px 0 24px;
+  padding: clamp(80px, 12vh, 120px) 24px 0 24px;
+
+  @media (max-width: 768px) {
+    padding: 80px 16px 0 16px;
+  }
 
   .topLable {
     letter-spacing: 2px;
@@ -58,7 +62,7 @@ export const LandingContent = styled.div`
   }
 
   .landingHealine {
-    font-size: clamp(2.5rem, 6rem, 4.5rem);
+    font-size: clamp(2rem, 8vw, 4.5rem);
     font-weight: 700;
     line-height: 1.1;
     color: var(--color-text);
@@ -74,14 +78,14 @@ export const LandingContent = styled.div`
     // welcome to my portfolio text
     margin-top: 16px;
     max-width: 480px;
-    font-size: 18px;
+    font-size: clamp(14px, 4vw, 18px);
     color: rgba(255, 255, 255, 0.75);
   }
 `;
 
 export const LandingButtonsGroup = styled.div`
   position: absolute;
-  bottom: 195px;
+  bottom: 95px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -107,15 +111,31 @@ export const LandingButtonsGroup = styled.div`
     color: white;
     cursor: pointer;
   }
+
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    margin-top: 32px;
+    gap: 16px;
+    flex-direction: column;
+    align-items: center;
+
+    .primaryButtonLanding,
+    .secondaryButtonLanding {
+      width: 100%;
+      max-width: 280px;
+      padding: 14px 20px;
+      font-size: 14px;
+    }
+  }
 `;
 
 export const LandingSocialButtonsGroup = styled.div`
-  position: absolute;
-  bottom: 140px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-top: auto;   /* this pushes it to bottom */
   display: flex;
+  justify-content: center;
   gap: 12px;
+  padding-bottom: 40px;
   z-index: 3;
 
   .circleButton {
@@ -139,7 +159,7 @@ export const LandingSocialButtonsGroup = styled.div`
       border-color: rgba(255, 255, 255, 0.4);
     }
 
-    a{
+    a {
       color: white;
     }
   }

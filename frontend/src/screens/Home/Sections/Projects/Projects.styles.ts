@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ProjectBackground = styled.div`
   position: relative;
   width: 100%;
-  min-height: 120vh;
+  min-height: 100svh;
   overflow: hidden;
   background-color: var(--bg-dark, #0b0f1a);
   &::before,
@@ -50,7 +50,10 @@ export const ProjectsGrid = styled.div`
   gap: 1rem;
   width: 100%;
   align-items: stretch;
-  min-height: 50vh;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 /*
@@ -61,7 +64,6 @@ export const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  height: 100%;
 
   & > article {
     flex: 1;
@@ -73,7 +75,6 @@ export const RightColumn = styled.div`
 `;
 
 export const FeaturedCard = styled.div`
-  height: 100%;
 
   & article {
     height: 100%;
@@ -120,11 +121,12 @@ export const Card = styled.article`
     opacity: 0.7;
     text-align: justify;
     text-justify: inter-word;
+    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
   }
 
   .skillsBanner {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
     gap: 0.5rem;
     width: 100%;
     margin: 0.5rem 0;

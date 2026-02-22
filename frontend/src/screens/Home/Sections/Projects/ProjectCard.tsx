@@ -18,15 +18,17 @@ function DescriptionCharLimit(text: string, limit: number) {
   return {
     text: text.slice(0, limit - 12).trimEnd(), // limit - 12, because 12chars is what "...read more" takes
     charLimit: true,
-  }
+  };
 }
 
-export default function ProjectCard({ project, type = "right" }: ProjectCardTypes) {
-  const rightCardLimitCHAR = 55; // Right side cards (in projects grid) have a rightCardLimitCHAR amount of char limit before "... read more" is applied
-  const leftCardLimitCHAR = 400; // Same for left side, but a higher char limit, because the card is longer
+export default function ProjectCard({
+  project,
+  type = "right",
+}: ProjectCardTypes) {
+  const isMobile = window.innerWidth < 768;
 
-  const limit = type === "left" ? leftCardLimitCHAR : rightCardLimitCHAR;
-  const {text, charLimit} = DescriptionCharLimit(project.description, limit);
+  const limit = type === "left" ? (isMobile ? 180 : 400) : isMobile ? 80 : 55;
+  const { text, charLimit } = DescriptionCharLimit(project.description, limit);
 
   return (
     <Card>
@@ -41,7 +43,6 @@ export default function ProjectCard({ project, type = "right" }: ProjectCardType
             <span className="readMore">...Read More</span>
           </>
         )}
-        
       </p>
       <img src={"/storage/" + project.imagePath} alt={project.title}></img>
       <div className="skillsBanner">

@@ -69,12 +69,6 @@ export default function Projects() {
             <FeaturedCard>
               {projects[0] && <ProjectCard project={projects[0]} type="left" />}
               {/* pagination */}
-              <Pagination
-                currentPage={currentPage}
-                lastPage={lastPage}
-                onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
-              />
             </FeaturedCard>
             <RightColumn>
               {projects
@@ -84,6 +78,12 @@ export default function Projects() {
                 )}
             </RightColumn>
           </ProjectsGrid>
+          <Pagination
+            currentPage={currentPage}
+            lastPage={lastPage}
+            onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
+          />
         </Container>
       </ProjectBackground>
     </>

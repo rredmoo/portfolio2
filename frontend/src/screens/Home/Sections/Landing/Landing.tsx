@@ -4,7 +4,7 @@ import {
   LandingContainer,
   LandingBackground,
   LandingContent,
-  LandingButtonsGroup,
+  // LandingButtonsGroup,
   LandingSocialButtonsGroup,
 } from "./Landing.styles";
 import BackgroundParticles from "../../Components/BackgroundParticles";
@@ -42,10 +42,10 @@ export default function Landing() {
         </p>
         <p className="subtext">Welcome to my portfolio.</p>
 
-        <LandingButtonsGroup>
+        {/* <LandingButtonsGroup>
           <button className="primaryButtonLanding">View Projects</button>
           <button className="secondaryButtonLanding">Contact Me</button>
-        </LandingButtonsGroup>
+        </LandingButtonsGroup> */}
         <LandingSocialButtonsGroup>
           <button className="circleButton">
             <a
