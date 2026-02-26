@@ -27,7 +27,7 @@ export function SceneGridWall() {
         position={[0, 0, 0]}
         rotation={[Math.PI / 2, 0, 0]}
         args={[50, 50]}
-        cellSize={4.1} // TODO maybe there is a better way to do this? (Probably is) 
+        cellSize={4.9} // TODO maybe there is a better way to do this? (Probably is) 
         cellThickness={0.6}
         cellColor="#ffffff"
         sectionSize={0}

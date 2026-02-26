@@ -45,11 +45,10 @@ export default function AdminProjects() {
   const { data, loading, error } = useQuery<ProjectsQueryResponse>(
     GET_PROJECTS_ADMIN,
     {
-      variables: { first: 3, page: currentPage },
+      variables: { first: 8, page: currentPage },
     },
   );
 
-  if (loading) return <p>Loading...</p>;
   if (error) {
     console.log(error);
     return <p>Error loading projects</p>;

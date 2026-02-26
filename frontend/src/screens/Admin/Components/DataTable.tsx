@@ -2,14 +2,12 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const TableWrapper = styled.div`
-  margin: 1.5rem auto;
+  margin: 1.5rem 0;
   width: 100%;
-  max-width: 1100px;
   overflow-x: auto;
   border: 1px solid var(--color-border);
   border-radius: 16px;
   background: var(--color-bg-secondary);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
 `;
 
 const Table = styled.table`
@@ -52,26 +50,13 @@ const Th = styled.th`
 const Td = styled.td`
   padding: 14px 16px;
   border-bottom: 1px solid var(--color-border);
-  white-space: nowrap;
 `;
 
 const Row = styled.tr`
   transition: background 0.3s ease;
 
-  &:nth-child(even) td {
-    background: color-mix(
-      in oklch,
-      var(--color-bg-secondary) 90%,
-      var(--color-bg)
-    );
-  }
-
   &:hover td {
-    background: color-mix(
-      in oklch,
-      var(--color-hover-light-purple) 20%,
-      var(--color-bg-secondary)
-    );
+    background: var(--color-bg) 90%
   }
 
   &:last-child td {
@@ -79,7 +64,9 @@ const Row = styled.tr`
   }
 `;
 
-const ActionsCell = styled.td`
+const ActionsCell = styled(Td)`
+  display: flex;
+  gap: 6px;
   align-items: center;
 `;
 

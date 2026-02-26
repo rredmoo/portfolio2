@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const LandingContainer = styled.section`
   position: relative;
   width: 100%;
+  overflow: hidden;
   min-height: 100svh;
   display: flex;
   flex-direction: column;

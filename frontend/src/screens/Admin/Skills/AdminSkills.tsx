@@ -36,7 +36,7 @@ export default function AdminSkills() {
 
   // graphql fetch
   const { data, loading, error } = useQuery<SkillsQueryResponse>(GET_SKILLS, {
-    variables: { first: 3, page: currentPage },
+    variables: { first: 8, page: currentPage },
   });
 
   const [deleteSkillMutation] = useMutation(DELETE_SKILL);
@@ -47,7 +47,6 @@ export default function AdminSkills() {
     });
   };
   
-  if (loading) return <p>loading</p>;
   if (error) {
     console.log(error);
     return <p>DEBUG: Error loading projects</p>;

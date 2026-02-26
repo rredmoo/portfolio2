@@ -89,7 +89,7 @@ export const FeaturedCard = styled.div`
 export const Card = styled.article`
   position: relative;
   padding: clamp(1rem, 1.5vw, 1.25rem);
-  border-radius: clamp(1.5rem, 3vw, 2.3rem);
+  border-radius: clamp(0.5rem, 3vw, 1rem);
   background-color: rgba(20, 24, 39);
   border: solid 1px rgba(232, 232, 232, 0.2);
   display: flex;

@@ -14,6 +14,7 @@ import {
   FormWrapper,
   SubmitButton,
 } from "../Components/DataForms.styled";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateProject() {
   // states
@@ -27,7 +28,7 @@ export default function CreateProject() {
   });
   const [skills, setSkills] = useState<Skill[]>([]);
   const [image, setImage] = useState<File | null>(null);
-
+  const navigate = useNavigate();
   const optionSkill = skills.map((skill) => ({
     value: skill.id,
     label: skill.title,
@@ -51,6 +52,7 @@ export default function CreateProject() {
     }
 
     await createProject(formData);
+    navigate("/admin/projects");
   };
 
   const handleChange = (

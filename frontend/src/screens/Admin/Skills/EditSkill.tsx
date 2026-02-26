@@ -4,13 +4,13 @@ import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { getSkill, updateSkill } from "../../../api/skills";
 import type { Skill } from "../../../api/types";
+import { FormField, FormInput, FormLabel, FormWrapper, SubmitButton } from "../Components/DataForms.styled";
 
 export default function EditSkill() {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [skill, setSkill] = useState<Omit<Skill, "id"> | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
@@ -20,7 +20,6 @@ export default function EditSkill() {
         const { id: _, ...rest } = data;
         setSkill(rest);
       })
-      .finally(() => setLoading(false));
   }, [id]);
 
   const handleChange = (
@@ -31,9 +30,9 @@ export default function EditSkill() {
     setSkill((prev) =>
       prev
         ? {
-            ...prev,
-            [name]: name === "level" ? Number(value) : value,
-          }
+          ...prev,
+          [name]: name === "level" ? Number(value) : value,
+        }
         : prev,
     );
   };
@@ -46,26 +45,49 @@ export default function EditSkill() {
     navigate("/admin/skills");
   };
 
-  if (loading) return <p>DEBUG: loading...</p>;
-  if (!skill) return <p>DEBUG: Skill not found</p>;
+  if (!skill) return <p>Loading skill</p>;
 
   return (
     <AdminLayout>
       <Sidebar />
       <MainAdminContainer>
-        <h1>Edit Skill</h1>
+        <FormWrapper onSubmit={handleSubmit}>
+          <h1>Edit Skill</h1>
 
-        <form onSubmit={handleSubmit}>
-          <input name="title" value={skill.title} onChange={handleChange} />
+          <FormField>
+            <FormLabel>Title</FormLabel>
+            <FormInput
+              name="title"
+              value={skill.title}
+              onChange={handleChange}
+            />
+          </FormField>
 
-          <select name="category" value={skill.category} onChange={handleChange}>
-            <option value="frontend">frontend</option>
-            <option value="backend">backend</option>
-          </select>
+          <FormField>
+            <FormLabel>Category</FormLabel>
+            <FormInput
+              name="category"
+              value={skill.category}
+              onChange={handleChange}
+            />
+          </FormField>
 
-          <input type="number" name="level" min={1} max={5} value={skill.level} onChange={handleChange}/>
-          <button type="submit">Save</button>
-        </form>
+          <FormField>
+            <FormLabel>Level</FormLabel>
+            <FormInput
+              type="number"
+              min={1}
+              max={5}
+              name="level"
+              value={skill.level}
+              onChange={handleChange}
+            />
+          </FormField>
+
+          <SubmitButton type="submit">
+            Save
+          </SubmitButton>
+        </FormWrapper>
       </MainAdminContainer>
     </AdminLayout>
   );

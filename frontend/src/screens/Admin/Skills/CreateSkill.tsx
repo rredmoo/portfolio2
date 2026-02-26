@@ -2,6 +2,8 @@ import { useState } from "react";
 import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { createSkill } from "../../../api/skills";
+import { FormField, FormInput, FormLabel, FormWrapper, SubmitButton } from "../Components/DataForms.styled";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateSkill() {
   const [image, setImage] = useState<File | null>(null);
@@ -11,6 +13,7 @@ export default function CreateSkill() {
     level: 1,
   });
 
+  const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -25,6 +28,7 @@ export default function CreateSkill() {
     }
 
     await createSkill(formData);
+    navigate("/admin/skills");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,53 +45,54 @@ export default function CreateSkill() {
       <AdminLayout>
         <Sidebar />
         <MainAdminContainer>
-          <h1>Create a new skill</h1>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Title:
-              <input
+          <FormWrapper onSubmit={handleSubmit}>
+            <h1>Create a new skill</h1>
+
+            <FormField>
+              <FormLabel>Title</FormLabel>
+              <FormInput
                 type="text"
                 name="title"
                 value={skill.title}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              Category:
-              <input
+            <FormField>
+              <FormLabel>Category</FormLabel>
+              <FormInput
                 type="text"
                 name="category"
                 value={skill.category}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              Level:
-              <input
+            <FormField>
+              <FormLabel>Level</FormLabel>
+              <FormInput
                 type="number"
                 name="level"
                 value={skill.level}
                 onChange={handleChange}
               />
-            </label>
-            <br />
+            </FormField>
 
-            <label>
-              Skill Image:
-              <input
+            <FormField>
+              <FormLabel>Skill Image</FormLabel>
+              <FormInput
                 type="file"
                 accept="image/*"
-                onChange={(e) => setImage(e.target.files?.[0] || null)}
+                onChange={(e) =>
+                  setImage(e.target.files?.[0] || null)
+                }
               />
-            </label>
-            <br />
+            </FormField>
 
-            <button type="submit">Submit</button>
-          </form>
+            <SubmitButton type="submit">
+              Submit
+            </SubmitButton>
+          </FormWrapper>
         </MainAdminContainer>
       </AdminLayout>
     </>

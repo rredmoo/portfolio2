@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@apollo/client/react";
 import type { Project } from "../../../../api/types";
+import Loadable from "../../../../components/common/Loadable";
 import ProjectCard from "./ProjectCard.tsx";
 import {
   ProjectsGrid,
@@ -37,16 +38,13 @@ export default function Projects() {
     },
   );
 
-  if (loading) return <p>Loading...</p>;
   if (error) {
     console.log(error);
     return <p>Error loading projects</p>;
   }
 
-  if (!data) return null;
-
-  const projects = data.projects.data;
-  const lastPage = data.projects.paginatorInfo.lastPage;
+  const projects = data?.projects.data ?? [];
+  const lastPage = data?.projects.paginatorInfo.lastPage ?? 1;
 
   return (
     <>
@@ -65,25 +63,46 @@ export default function Projects() {
           <H1PrimaryTitle>
             <h1>Projecets List</h1>
           </H1PrimaryTitle>
-          <ProjectsGrid>
-            <FeaturedCard>
-              {projects[0] && <ProjectCard project={projects[0]} type="left" />}
-              {/* pagination */}
-            </FeaturedCard>
-            <RightColumn>
-              {projects
-                .slice(1, 3)
-                .map((p) =>
-                  p ? <ProjectCard key={p.id} project={p} /> : null,
+          <Loadable loading={loading}>
+            <ProjectsGrid>
+              <FeaturedCard>
+                {projects[0] && (
+                  <ProjectCard
+                    project={projects[0]}
+                    type="left"
+                  />
                 )}
-            </RightColumn>
-          </ProjectsGrid>
-          <Pagination
-            currentPage={currentPage}
-            lastPage={lastPage}
-            onPrev={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-            onNext={() => setCurrentPage((p) => Math.min(p + 1, lastPage))}
-          />
+              </FeaturedCard>
+
+              <RightColumn>
+                {projects
+                  .slice(1, 3)
+                  .map((p) =>
+                    p ? (
+                      <ProjectCard
+                        key={p.id}
+                        project={p}
+                      />
+                    ) : null
+                  )}
+              </RightColumn>
+            </ProjectsGrid>
+
+            <Pagination
+              currentPage={currentPage}
+              lastPage={lastPage}
+              onPrev={() =>
+                setCurrentPage((p) =>
+                  Math.max(p - 1, 1)
+                )
+              }
+              onNext={() =>
+                setCurrentPage((p) =>
+                  Math.min(p + 1, lastPage)
+                )
+              }
+            />
+          </Loadable>
         </Container>
       </ProjectBackground>
     </>
