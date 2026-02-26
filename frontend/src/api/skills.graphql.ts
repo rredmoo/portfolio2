@@ -25,3 +25,12 @@ export const DELETE_SKILL = gql`
     }
   }
 `;
+
+export const GET_SKILLS_SELECT = gql`
+  query GetSkillsSelect {
+    skillsSelect {
+      id
+      title
+    }
+  }
+`;
