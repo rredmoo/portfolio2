@@ -8,7 +8,8 @@
 
 :root {
   --color-bg: oklch(12.8% 0.004 285);
-  --color-bg-secondary: oklch(14% 0.004 285);
+  --color-bg-footer: oklch(12.8% 0.004 285);
+  --color-bg-secondary: oklch(9.693% 0.00001 271.152);
   --color-bg-accent-pink: oklch(0.7019 0.2053 1.58 / 7.84%);
   --color-bg-accent-blue: oklch(0.743 0.142972 244.2512 / 8%);
   --color-primary-purple: oklch(58.32% 0.2139 278.205);
@@ -25,7 +26,7 @@
 body {
   font-family: var(--font-main);
   font-size: 75%;
-  background-color: var(--color-bg);
+  background-color: rgba(14 18 31);
   color: var(--color-text);
   line-height: 1.5;
 }

@@ -5,14 +5,6 @@ interface ProjectCardTypes {
   type?: "left" | "right";
 }
 
-function daysSinceCreation(dateString: string): number {
-  const creationDate = new Date(dateString).getTime();
-  const currentDate = Date.now();
-  const MSDifference = currentDate - creationDate;
-
-  return Math.floor(MSDifference / (1000 * 60 * 60 * 24));
-}
-
 function DescriptionCharLimit(text: string, limit: number) {
   if (text.length <= limit) return { text, charLimit: false };
   return {
@@ -29,11 +21,11 @@ export default function ProjectCard({
 
   const limit = type === "left" ? (isMobile ? 180 : 400) : isMobile ? 80 : 55;
   const { text, charLimit } = DescriptionCharLimit(project.description, limit);
-
+  console.log(project);
   return (
     <Card>
       <h1>
-        {project.title} ( {daysSinceCreation(project.createdAt)} days ago)
+        {project.title}
       </h1>
       {/* <p>{project.short_description}</p> Displayed in admin panel */}
       <p className="projectDescriptionPublic">

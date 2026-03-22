@@ -16,7 +16,7 @@ export default function Model3D() {
 
   return (
     <Center position={[0, 0, -2]}>
-      <primitive ref={group} object={scene} scale={1.8} position={[0, 0.15, 0]} renderOrder={0} />
+      <primitive ref={group} object={scene} scale={1.6} position={[0, 0.15, 0]} renderOrder={0} />
     </Center>
   );
 }

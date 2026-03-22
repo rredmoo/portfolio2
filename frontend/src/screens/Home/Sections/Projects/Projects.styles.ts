@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ProjectBackground = styled.div`
   position: relative;
   width: 100%;
-  min-height: 100svh;
   overflow: hidden;
   background-color: var(--bg-dark, #0b0f1a);
   &::before,

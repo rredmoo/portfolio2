@@ -4,9 +4,13 @@ import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { getProject, updateProject } from "../../../api/projects";
 import type { EditProjectForm, Skill } from "../../../api/types";
+import { DtPicker } from 'react-calendar-datetime-picker'
+import type { Day } from 'react-calendar-datetime-picker'
 import Select from "react-select";
+// graph get all skills for select drop down
 import { useQuery } from "@apollo/client/react";
 import { GET_SKILLS_SELECT } from "../../../api/skills.graphql";
+
 import { FormWrapper, FormField, FormLabel, FormInput, FormTextarea, CheckboxRow, SubmitButton } from "../Components/DataForms.styled";
 
 export default function EditProject() {
@@ -15,6 +19,7 @@ export default function EditProject() {
 
   const [project, setProject] = useState<EditProjectForm | null>(null);
   const [loading, setLoading] = useState(true);
+  const [date, setDate] = useState<Day | null>(null)
 
   type SkillsSelectResponse = {
     skillsSelect: Pick<Skill, "id" | "title">[];
@@ -59,7 +64,19 @@ export default function EditProject() {
     e.preventDefault();
     if (!id || !project) return;
 
-    await updateProject(Number(id), project);
+    const payload = {
+      ...project,
+      created_at: date
+        ? new Date(
+          date.year,
+          date.month - 1,
+          date.day,
+          date.hour ?? 0,
+          date.minute ?? 0
+        ).toISOString()
+        : project.created_at,
+    };
+    await updateProject(Number(id), payload);
     navigate("/admin/projects");
   };
 
@@ -123,6 +140,16 @@ export default function EditProject() {
             />
             <FormLabel>Feature in portfolio?</FormLabel>
           </CheckboxRow>
+
+          <FormField>
+            <FormLabel>Date And Time</FormLabel>
+            <DtPicker
+              withTime={true}
+              dateFormat="YYYY-MM-DD HH:mm"
+              onChange={setDate}
+              placeholder={project.created_at}
+            />
+          </FormField>
 
           <FormField>
             <FormLabel>Skills</FormLabel>
