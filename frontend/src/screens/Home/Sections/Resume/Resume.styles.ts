@@ -50,7 +50,7 @@ export const ResumeField = styled.section`
 
   .downloadBtn {
     padding: 0.5rem;
-    background-color: gray;
+    background-color: #1e2335;
     border-radius: 12px;
     position: absolute;
     cursor: pointer;
@@ -60,7 +60,7 @@ export const ResumeField = styled.section`
     .tooltipText {
       visibility: hidden;
       width: 130px;
-      background-color: black;
+      background-color: #2b2b2b;
       color: #fff;
       text-align: center;
       border-radius: 6px;

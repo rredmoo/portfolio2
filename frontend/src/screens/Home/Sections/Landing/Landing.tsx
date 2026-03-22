@@ -40,7 +40,7 @@ export default function Landing() {
         <p className="landingHealine">
           Hi, I’m <span>Dāvids Adamovičs</span>
         </p>
-        <p className="subtext">Welcome to my portfolio.</p>
+        <p className="subtext">Based in Ventspils, Latvia</p>
 
         {/* <LandingButtonsGroup>
           <button className="primaryButtonLanding">View Projects</button>

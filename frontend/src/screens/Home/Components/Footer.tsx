@@ -105,10 +105,10 @@ export default function Footer() {
 
                 <FooterSection>
                     <h3>Contact</h3>
-                    <a href="davidsadamovicss@gmail.com">
+                    <p>
                         <FontAwesomeIcon icon={faEnvelope} style={{ marginRight: "8px" }} />
                         davidsadamovicss@gmail.com
-                    </a>
+                    </p>
                 </FooterSection>
             </FooterContainer>
 
