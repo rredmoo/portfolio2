@@ -5,7 +5,8 @@ import Sidebar from "../Components/Sidebar";
 import { getProject, updateProject } from "../../../api/projects";
 import type { EditProjectForm, Skill } from "../../../api/types";
 import Select from "react-select";
-import getSkills from "../../../api/skills";
+import { useQuery } from "@apollo/client/react";
+import { GET_SKILLS_SELECT } from "../../../api/skills.graphql";
 import { FormWrapper, FormField, FormLabel, FormInput, FormTextarea, CheckboxRow, SubmitButton } from "../Components/DataForms.styled";
 
 export default function EditProject() {
@@ -14,11 +15,17 @@ export default function EditProject() {
 
   const [project, setProject] = useState<EditProjectForm | null>(null);
   const [loading, setLoading] = useState(true);
-  const [skills, setSkills] = useState<Skill[]>([]);
 
-  useEffect(() => {
-    getSkills().then((res) => setSkills(res.data));
-  }, []);
+  type SkillsSelectResponse = {
+    skillsSelect: Pick<Skill, "id" | "title">[];
+  };
+
+  const { data } = useQuery<SkillsSelectResponse>(GET_SKILLS_SELECT);
+
+  type SkillOption = {
+    value: number;
+    label: string;
+  };
 
   useEffect(() => {
     if (!id) return;
@@ -41,9 +48,9 @@ export default function EditProject() {
     setProject((prev) =>
       prev
         ? {
-            ...prev,
-            [name]: type === "checkbox" ? checked : value,
-          }
+          ...prev,
+          [name]: type === "checkbox" ? checked : value,
+        }
         : prev,
     );
   };
@@ -56,10 +63,11 @@ export default function EditProject() {
     navigate("/admin/projects");
   };
 
-  const optionSkill = skills.map((skill) => ({
-    value: skill.id,
-    label: skill.title,
-  }));
+  const optionSkill: SkillOption[] =
+    data?.skillsSelect?.map((skill) => ({
+      value: Number(skill.id),
+      label: skill.title,
+    })) ?? [];
   if (loading) return <p>Loading...</p>;
   if (!project) return <p>Project not found</p>;
 
@@ -128,7 +136,10 @@ export default function EditProject() {
               onChange={(selected) =>
                 setProject((prev) =>
                   prev
-                    ? { ...prev, skills: selected.map((s) => s.value) }
+                    ? {
+                      ...prev,
+                      skills: (selected ?? []).map((s) => s.value),
+                    }
                     : prev,
                 )
               }

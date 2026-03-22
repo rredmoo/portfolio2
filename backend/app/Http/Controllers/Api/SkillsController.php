@@ -52,7 +52,7 @@ class SkillsController extends Controller
             }
             $data['imagePath'] = $request->file('image')->store('skills', 'public');
         }
-        
+
         $skill->update($data);
         Cache::forget('skills_list');
         return $skill;

@@ -13,6 +13,10 @@ export const FormField = styled.div`
   display: flex;
   flex-direction: column;
   gap: 6px;
+
+  select {
+    color: black;
+  }
 `;
 
 export const FormLabel = styled.label`
