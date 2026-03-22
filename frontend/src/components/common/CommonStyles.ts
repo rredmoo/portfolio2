@@ -14,8 +14,11 @@ export const Container = styled.div`
  * TEXT Components
  */
 export const H1PrimaryTitle = styled.div`
-  padding: 2rem;
+  padding: 1rem;
   color: #e4e4e4;
+  margin-bottom: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
 `;
 
 /*

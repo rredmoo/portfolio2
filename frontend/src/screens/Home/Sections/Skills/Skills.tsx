@@ -7,7 +7,6 @@ import {
   Container,
   H1PrimaryTitle,
 } from "../../../../components/common/CommonStyles";
-import { ProjectBackground } from "../Projects/Projects.styles";
 import SkillsCard from "./SkillsCard";
 import { SkillsGrid } from "./Skills.styles";
 import Pagination from "../../../../components/common/Pagination";
@@ -37,10 +36,9 @@ export default function Skills() {
   const lastPage = data?.skills.paginatorInfo.lastPage ?? 1;
 
   return (
-    <ProjectBackground>
       <Container>
         <H1PrimaryTitle>
-          <h1>Skills List</h1>
+          <h1>Tech Stack</h1>
         </H1PrimaryTitle>
         <Loadable loading={loading}>
           <SkillsGrid>
@@ -57,6 +55,5 @@ export default function Skills() {
           />
         </Loadable>
       </Container>
-    </ProjectBackground>
   );
 }

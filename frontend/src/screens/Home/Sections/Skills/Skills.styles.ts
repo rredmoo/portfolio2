@@ -2,22 +2,18 @@ import styled from "styled-components";
 
 export const Card = styled.article`
   padding: clamp(1rem, 1.5vw, 1.25rem);
-  border-radius: clamp(0.5rem, 3vw, 0.7rem);
+  border-radius: 2px;
   background-color: rgba(20, 24, 39);
-  border: solid 1px rgba(232, 232, 232, 0.2);
+  border: solid 1px rgba(232, 232, 232, 0.1);
 
   display: flex;
   flex-direction: column; /* FIX */
-  gap: 0.75rem; /* spacing */
+  gap: 0.25rem;
 
   width: 100%;
   max-width: 46rem;
 
   transition: background-color 0.6s;
-
-  &:hover {
-    background-color: rgba(28, 32, 50);
-  }
 
   h1 {
     font-size: 1.15rem;

@@ -4,30 +4,7 @@ export const ProjectBackground = styled.div`
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: var(--bg-dark, #0b0f1a);
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    filter: blur(120px);
-  }
-
-  &::before {
-    background: radial-gradient(
-      ellipse at top,
-      var(--color-bg-accent-pink),
-      transparent 70%
-    );
-  }
-
-  &::after {
-    background: radial-gradient(
-      ellipse at right,
-      var(--color-bg-accent-blue),
-      transparent 70%
-    );
-  }
+  background-color: #0e121f;
 
   .canvas-bg {
     position: absolute;
@@ -45,8 +22,8 @@ export const ProjectBackground = styled.div`
 
 export const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: 55% 45%;
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
   width: 100%;
   align-items: stretch;
 
@@ -63,46 +40,31 @@ export const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-
-  & > article {
-    flex: 1;
-  }
-
-  & img {
-    height: clamp(90px, 12vw, 125px);
-  }
 `;
 
 export const FeaturedCard = styled.div`
-
   & article {
     height: 100%;
   }
 
   & img {
-    height: clamp(155px, 17vw, 235px);
-    padding: 0.75rem 0;
+    max-height: 200px;
   }
 `;
 
 export const Card = styled.article`
   position: relative;
   padding: clamp(1rem, 1.5vw, 1.25rem);
-  border-radius: clamp(0.5rem, 3vw, 1rem);
+
   background-color: rgba(20, 24, 39);
   border: solid 1px rgba(232, 232, 232, 0.2);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin: 0;
   width: 100%;
   max-width: min(100%, 46rem);
   transition: background-color 0.6s;
-  padding-bottom: 3rem;
-
-  &:hover {
-    background-color: rgba(28, 32, 50);
-  }
 
   article {
     overflow: hidden;
@@ -110,7 +72,7 @@ export const Card = styled.article`
 
   h1 {
     margin-bottom: 0.5rem;
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 600;
   }
 
@@ -118,55 +80,106 @@ export const Card = styled.article`
     margin: 0.25rem 0;
     font-size: 0.95rem;
     opacity: 0.7;
-    text-align: justify;
-    text-justify: inter-word;
-    font-size: clamp(0.85rem, 3.5vw, 0.95rem);
+    text-align: left;
+    line-height: 1.4;
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
   }
 
   .skillsBanner {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
-    gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
     width: 100%;
-    margin: 0.5rem 0;
+    margin: 0.4rem 0;
   }
 
   .skill {
-    padding: 0.4rem 0.6rem;
-    border-radius: 6px;
-    background-color: rgba(232, 232, 232, 0.22);
-    font-size: 0.7rem;
+    padding: 0.25rem 0.5rem;
+
+    background-color: rgba(232, 232, 232, 0.12);
+    font-size: 0.65rem;
     text-align: center;
     white-space: nowrap;
+    border: 1px solid rgba(232, 232, 232, 0.15);
   }
 
   img {
     width: 100%;
+    height: 150px;
     object-fit: cover;
-    flex-shrink: 0;
-    border-radius: 12px;
   }
 
-  a {
+  .actions {
     position: absolute;
-    bottom: 20px;
-    left: 20px;
-    text-decoration: none;
+    top: 12px;
+    right: 12px;
   }
 
-  a button {
-    background-color: transparent;
-    border: solid 2px rgba(232, 232, 232, 0.2);
-    border-radius: 12px;
-    padding: 0.4rem 0.6rem;
+  .actions button {
+    background-color: rgba(20, 24, 39, 0.8);
+    border: solid 1px rgba(232, 232, 232, 0.25);
+
+    padding: 0.3rem 0.5rem;
+    font-size: 0.7rem;
     color: var(--color-text);
-    transition:
-      background-color 0.3s,
-      border-color 0.3s;
+    backdrop-filter: blur(6px);
+    transition: 0.2s;
   }
 
-  a button:hover {
+  .actions button:hover {
     background-color: rgba(232, 232, 232, 0.08);
-    border-color: rgba(232, 232, 232, 0.35);
+    border-color: rgba(232, 232, 232, 0.4);
+  }
+
+  .readMore {
+    cursor: pointer;
+    margin-left: 4px;
+    opacity: 0.8;
+  }
+`;
+
+export const PopupOverlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+`;
+
+export const PopupContent = styled.div`
+  position: relative;
+  background: rgba(20, 24, 39, 0.95);
+  border: 1px solid rgba(232, 232, 232, 0.2);
+  border-radius: 12px;
+  padding: 1.2rem;
+  max-height: 80vh;
+  overflow-y: auto;
+  max-width: 500px;
+  width: 90%;
+  color: var(--color-text);
+  animation: fadeIn 0.2s ease;
+
+  h2 {
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+
+  .closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: var(--color-text);
+    font-size: 1.2rem;
+    cursor: pointer;
   }
 `;

@@ -19,7 +19,7 @@ export default function Resume() {
               <span className="tooltipText">Download Resume</span>
             </button>
           </a>
-          <h1>Work Experiance</h1>
+          <h1>Work Experience</h1>
           <section className="resumeSections">
             <p className="subTitleText">├── 💼 SIA Azeron </p>
             <p className="smallText">│ └── 2025 - ongoing</p>
@@ -46,18 +46,6 @@ export default function Resume() {
             <p className="smallText">│ └── 2023 – 2025</p>
             <p className="smallText">
               │ └── Ventspils University of Applied Sciences
-            </p>
-            <br />
-
-            <p className="subTitleText">├── 📚 Secondary education</p>
-            <p className="smallText">│ └── 2020 – 2023</p>
-            <p className="smallText">
-              │ └── Ventspils Secondary School No.4.
-              <br />
-              │ └── Advanced subjects:
-              <br />
-              │ └── “Programming II”
-              <br />│ └── “Business English II”
             </p>
             <br />
 

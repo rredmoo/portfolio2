@@ -9,8 +9,6 @@ import {
   FeaturedCard,
   ProjectBackground,
 } from "./Projects.styles.ts";
-import { SceneGridWall } from "../Landing/SceneGrid";
-import { Canvas } from "@react-three/fiber";
 import Pagination from "../../../../components/common/Pagination.tsx";
 import {
   Container,
@@ -51,17 +49,10 @@ export default function Projects() {
       <ProjectBackground>
         <HrPrimary />
 
-        {/* canvas background of lines */}
-        <div className="canvas-bg">
-          <Canvas>
-            <SceneGridWall />
-          </Canvas>
-        </div>
-
         {/* list of all projects */}
         <Container>
           <H1PrimaryTitle>
-            <h1>Projecets List</h1>
+            <h1>Projects</h1>
           </H1PrimaryTitle>
           <Loadable loading={loading}>
             <ProjectsGrid>

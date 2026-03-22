@@ -8,10 +8,10 @@
 
 :root {
   --color-bg: oklch(12.8% 0.004 285);
-  --color-bg-footer: oklch(12.8% 0.004 285);
+  --color-bg-footer: oklch(11.563% 0.00324 285.832);
   --color-bg-secondary: oklch(9.693% 0.00001 271.152);
-  --color-bg-accent-pink: oklch(0.7019 0.2053 1.58 / 7.84%);
-  --color-bg-accent-blue: oklch(0.743 0.142972 244.2512 / 8%);
+  --color-bg-accent-pink: oklch(21.36% 0.08662 271.972 / 0.078);
+  --color-bg-accent-blue: oklch(20.169% 0.03033 242.114 / 0.08);
   --color-primary-purple: oklch(58.32% 0.2139 278.205);
   --color-secondary: oklch(0.4833 0.2222 301.22);
   --color-border: oklch(30.5% 0.0182 285.268);

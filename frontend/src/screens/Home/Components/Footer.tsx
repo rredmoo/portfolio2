@@ -4,7 +4,7 @@ import { faGithub, faLinkedin, faDiscord } from '@fortawesome/free-brands-svg-ic
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 const FooterWrapper = styled.footer`
-  background: rgba(14 18 31);
+  background: rgb(20 24 39);
   color: #f5f5f5;
   padding: 3rem 1.5rem;
   margin-top: 3rem;

@@ -3,34 +3,9 @@ import styled from "styled-components";
 export const ResumeBackground = styled.div`
   position: relative;
   width: 100%;
-  min-height: 100vh;
+  min-height: 80vh;
   overflow: hidden;
-  background-color: var(--bg-dark, #0b0f1a);
-
-  &::before,
-  &::after {
-    content: "";
-    position: absolute;
-    inset: -20%;
-    filter: blur(120px);
-    z-index: 0;
-  }
-
-  &::before {
-    background: radial-gradient(
-      ellipse at bottom,
-      var(--color-bg-accent-pink),
-      transparent 70%
-    );
-  }
-
-  &::after {
-    background: radial-gradient(
-      ellipse at right,
-      var(--color-bg-accent-blue),
-      transparent 70%
-    );
-  }
+  background-color: var(--bg-dark);
 
   > * {
     position: relative;
@@ -40,20 +15,19 @@ export const ResumeBackground = styled.div`
 
 export const ResumeField = styled.section`
   background-color: rgba(20, 24, 39);
-  border-radius: 37px;
   padding: 2rem;
+  border: solid 1px rgba(232, 232, 232, 0.1);
   width: 100%;
   margin: 3rem auto;
-  box-shadow: 0 0 35px rgba(40, 53, 140, 0.35);
   transition: all 0.3s ease-in-out;
   position: relative;
 
   .downloadBtn {
     padding: 0.5rem;
     background-color: #1e2335;
-    border-radius: 12px;
     position: absolute;
     cursor: pointer;
+    color: #fff;
     top: 25px;
     right: 25px;
 
@@ -63,7 +37,6 @@ export const ResumeField = styled.section`
       background-color: #2b2b2b;
       color: #fff;
       text-align: center;
-      border-radius: 6px;
       padding: 5px 0;
       position: absolute;
       top: 110%;
@@ -79,6 +52,11 @@ export const ResumeField = styled.section`
 
   .resumeSections {
     margin: 1rem 2rem 0rem;
+  }
+
+  h1 {
+    font-size: 1rem;
+    font-weight: 600;
   }
 
   .smallText {
@@ -108,7 +86,6 @@ export const Dot = styled.span<{ active?: boolean }>`
   height: 10px;
   width: 10px;
   margin-right: 5px;
-  border-radius: 50%;
   display: inline-block;
   background-color: ${({ active }) => (active ? "#cee348" : "#bbb")};
 `;

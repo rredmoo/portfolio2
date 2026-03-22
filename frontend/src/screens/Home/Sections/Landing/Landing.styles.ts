@@ -7,7 +7,7 @@ export const LandingContainer = styled.section`
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-dark, #0b0f1a);
+  background-color: #0e121f;
 `;
 
 export const LandingBackground = styled.div`
@@ -45,7 +45,8 @@ export const LandingContent = styled.div`
   flex: 1;
   position: relative;
   z-index: 3;
-  max-width: 1200px;
+  max-width: 1000px;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -63,13 +64,13 @@ export const LandingContent = styled.div`
   }
 
   .landingHealine {
-    font-size: clamp(2rem, 8vw, 4.5rem);
+    font-size: clamp(2rem, 8vw, 3rem);
     font-weight: 700;
     line-height: 1.1;
     color: var(--color-text);
 
     span {
-      background: linear-gradient(90deg, #ff5f9e, #8b5cf6);
+      background: linear-gradient(90deg, rgb(53 17 75), #8b5cf6);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -132,7 +133,7 @@ export const LandingButtonsGroup = styled.div`
 `;
 
 export const LandingSocialButtonsGroup = styled.div`
-  margin-top: auto;   /* this pushes it to bottom */
+  margin-top: auto; /* this pushes it to bottom */
   display: flex;
   justify-content: center;
   gap: 12px;
