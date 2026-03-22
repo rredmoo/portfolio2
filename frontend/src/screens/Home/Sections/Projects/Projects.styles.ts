@@ -122,6 +122,7 @@ export const Card = styled.article`
     padding: 0.3rem 0.5rem;
     font-size: 0.7rem;
     color: var(--color-text);
+    cursor: pointer;
     backdrop-filter: blur(6px);
     transition: 0.2s;
   }
