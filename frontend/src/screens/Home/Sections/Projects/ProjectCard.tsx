@@ -21,7 +21,6 @@ export default function ProjectCard({
 
   const limit = type === "left" ? (isMobile ? 180 : 400) : isMobile ? 80 : 55;
   const { text, charLimit } = DescriptionCharLimit(project.description, limit);
-  console.log(project);
   return (
     <Card>
       <h1>
@@ -47,7 +46,11 @@ export default function ProjectCard({
       {/* If project contains a link, the button will be created, if its NULL, nothing will be displayed */}
       {project.link && (
         <a href={project.link} target="_blank" rel="noopener noreferrer">
-          <button>View Docs</button>
+          <button>
+            {new URL(project.link).hostname === "wiki.dadamov.info"
+              ? "View Docs"
+              : "View"}
+          </button>
         </a>
       )}
     </Card>

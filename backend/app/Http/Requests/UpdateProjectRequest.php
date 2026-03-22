@@ -27,6 +27,7 @@ class UpdateProjectRequest extends FormRequest
             'description' => 'sometimes|string',
             'link' => 'sometimes|url',
             'is_featured' => 'required|bool',
+            'created_at' => 'required|string',
             'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
             'skills' => 'sometimes|array',
             'skills.*' => 'integer|exists:skills,id',

@@ -13,6 +13,7 @@ class Project extends Model
         'description',
         'link',
         'is_featured',
+        'created_at',
         'imagePath'
     ];
 

@@ -29,7 +29,7 @@ class ProjectController extends Controller
                 $query->where('is_featured', (int) $request->query('is_featured'));
             }
 
-            return $query->paginate(3)->withQueryString();
+            return $query->orderBy('created_at', 'DESC')->paginate(3)->withQueryString();
         });
 
         #TODO Add filters like isfeatured
