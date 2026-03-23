@@ -22,7 +22,7 @@ export default function ProjectCard({
   const [open, setOpen] = useState(false);
   const isMobile = window.innerWidth < 768;
 
-  const limit = type === "left" ? (isMobile ? 180 : 400) : isMobile ? 80 : 55;
+  const limit = type === "left" ? (isMobile ? 180 : 700) : isMobile ? 80 : 55;
   const { text, charLimit } = DescriptionCharLimit(project.description, limit);
 
   useEffect(() => {

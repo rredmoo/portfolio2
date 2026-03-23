@@ -40,6 +40,10 @@ export const RightColumn = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  img {
+    max-height: 150px;
+  }
 `;
 
 export const FeaturedCard = styled.div`
@@ -47,8 +51,17 @@ export const FeaturedCard = styled.div`
     height: 100%;
   }
 
-  & img {
-    max-height: 200px;
+  img {
+    max-height: 300px;
+    aspect-ratio: 16/9;
+  }
+
+  .projectDescriptionPublic {
+    padding-bottom: 1rem;
+  }
+
+  .skill {
+    margin-top: 1rem;
   }
 `;
 
@@ -105,7 +118,7 @@ export const Card = styled.article`
 
   img {
     width: 100%;
-    height: 150px;
+    height: auto;
     object-fit: cover;
   }
 
