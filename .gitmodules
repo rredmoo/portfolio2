@@ -2,3 +2,6 @@
 	path = otterwiki
 	url = https://github.com/redimp/otterwiki.git
 
+[submodule "apitester"]
+	path = apitester
+	url = git@github.com:rredmoo/apitester.git
