@@ -1,9 +1,4 @@
 [submodule "otterwiki"]
 	path = otterwiki
 	url = https://github.com/redimp/otterwiki.git
-[submodule "apiTester"]
-	path = apiTester
-	url = git@github.com:rredmoo/apiTester.git
-[submodule "apitester"]
-	path = apitester
-	url = git@github.com:rredmoo/apitester.git
+
