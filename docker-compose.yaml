@@ -1,0 +1,109 @@
+services: # group of containers to run
+    backend: # container 
+        build: ./backend # where docker looks for the dockerfile and uses it to build an image
+        container_name: portfolio-backend # container name that shows up when "docker ps" command is run, displaying currently running containers
+        volumes:
+            - ./backend:/var/www/html # left side "./backend" is the real location on the machine, right side "/var/www/html" is the folder inside the container
+        depends_on: # everything under "depends_on" tells docker to run them before this "backend" container. So mysql and redis will run before backend
+            - mysql
+            - redis
+        command: php-fpm
+        
+    frontend:
+        build: ./frontend
+        container_name: portfolio-frontend
+        depends_on:
+            - backend
+
+    certbot:
+      image: certbot/certbot
+      volumes:
+        - ./certbot/www:/var/www/certbot
+        - ./certbot/conf:/etc/letsencrypt
+
+    nginx:
+        image: nginx:alpine
+        container_name: portfolio-nginx
+        ports:
+          - "80:80"
+          - "443:443"
+        volumes:                # portfolio backend
+          - ./frontend/dist:/var/www/frontend       # portfolio frontend
+          - ./apitester/backend:/var/www/apitester/html   # apitester backend
+          - ./apitester/frontend/dist:/var/www/apitester/frontend  # apitester frontend
+          - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+          - ./certbot/www:/var/www/certbot
+          - ./certbot/conf:/etc/letsencrypt
+        depends_on:
+          - backend
+          - apitester-backend
+
+    mysql:
+        image: mysql:8.0 # builds an image of 8.0 version mysql on docker hub
+        container_name: portfolio-mysql
+        env_file:
+            - .env 
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
+        ports:
+            - "3307:3306"
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+    redis:
+        image: redis:7-alpine
+        container_name: portfolio-redis
+        ports:
+            - "6379:6379"
+
+    otterwiki:
+      image: redimp/otterwiki:2
+      restart: unless-stopped
+      ports:
+        - 8080:80
+      volumes:
+        - ./app-data:/app-data
+
+    apitester-backend:
+        build: ./apitester/backend
+        container_name: apitester-backend
+        volumes:
+            - ./apitester/backend:/var/www/html
+        depends_on:
+            - apitester-mysql
+            - apitester-redis
+        command: php-fpm
+        
+    apitester-frontend:
+        build: ./apitester/frontend
+        container_name: apitester-frontend
+        depends_on:
+            - apitester-backend
+
+    apitester-mysql:
+        image: mysql:8.0
+        container_name: apitester-mysql
+        env_file:
+            - ./apitester/.env 
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: ${MYSQL_ALLOW_EMPTY_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+        ports:
+            - "3308:3306"
+        volumes:
+            - mysql_data:/var/lib/mysql
+
+    apitester-redis:
+        image: redis:7-alpine
+        container_name: apitester-redis
+        ports:
+            - "6380:6379"
+
+volumes:
+    mysql_data:
