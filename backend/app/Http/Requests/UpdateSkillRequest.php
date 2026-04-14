@@ -26,6 +26,7 @@ class UpdateSkillRequest extends FormRequest
             'category' => 'sometimes|string|max:255',
             'level' => 'required|integer|min:1|max:5',
             'image' => 'nullable|image|mimes:jpg,png,webp|max:2048',
+            'is_featured' => 'required|boolean',
         ];
     }
 }

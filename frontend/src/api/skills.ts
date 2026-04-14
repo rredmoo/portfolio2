@@ -1,12 +1,10 @@
 import { apiFetch } from "./client";
-import type { Skill, PaginatedResponse } from './types';
+import type { Skill, PaginatedResponse } from "./types";
 
 // REPLACED WITH GRAPHQL SKILLS QUERY IN
-//  Get all skills 
-export default function getSkills(
-    page = 1
-): Promise<PaginatedResponse<Skill>> {
-    return apiFetch<PaginatedResponse<Skill>>(`/skills?page=${page}`);
+//  Get all skills
+export default function getSkills(page = 1): Promise<PaginatedResponse<Skill>> {
+  return apiFetch<PaginatedResponse<Skill>>(`/skills?page=${page}`);
 }
 
 // Get a specific skill by id
@@ -26,6 +24,9 @@ export function createSkill(formData: FormData) {
 export function updateSkill(id: number, skill: Omit<Skill, "id">) {
   return apiFetch<Skill>(`/skills/${id}`, {
     method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify(skill),
   });
 }

@@ -37,6 +37,7 @@ export interface Skill {
   category: string;
   level: number;
   imagePath: string;
+  is_featured: boolean;
 }
 
 export interface ServerStats {

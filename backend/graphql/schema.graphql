@@ -4,6 +4,7 @@ type Skill {
     category: String!
     level: Int!
     imagePath: String
+    is_featured: Boolean!
     createdAt: DateTime!
     updatedAt: DateTime!
 }
@@ -35,9 +36,12 @@ type ServerStats {
 }
 
 type Query {
-    skills: [Skill!]! @paginate(type: "PAGINATOR") @cache(maxAge: 600)
+    skills(first: Int!, page: Int!, is_featured: Boolean @where): [Skill!]!
+        @paginate(type: "PAGINATOR")
+        @cache(maxAge: 600)
     skillsSelect: [Skill!]! @all @cache(maxAge: 600)
-    projects: [Project!]! @paginate(type: "PAGINATOR") @cache(maxAge: 600)
+    projects(first: Int!, page: Int!, is_featured: Boolean @where): [Project!]!
+        @paginate(type: "PAGINATOR")
     serverStats: ServerStats!
         @field(resolver: "App\\GraphQL\\Queries\\ServerStats")
 }

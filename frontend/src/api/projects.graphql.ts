@@ -2,8 +2,8 @@ import { gql } from "@apollo/client";
 
 // used in public portfolio
 export const GET_PROJECTS = gql`
-  query GetProjects($first: Int!, $page: Int!) {
-    projects(first: $first, page: $page) {
+  query GetProjects($first: Int!, $page: Int!, $is_featured: Boolean) {
+    projects(first: $first, page: $page, is_featured: $is_featured) {
       data {
         id
         title
@@ -50,4 +50,3 @@ export const DELETE_PROJECT = gql`
     }
   }
 `;
-

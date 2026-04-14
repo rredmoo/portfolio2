@@ -27,7 +27,7 @@ type SkillsQueryResponse = { // response structure
 export default function Skills() {
   const [currentPage, setCurrentPage] = useState(1);
   const { data, loading, error } = useQuery<SkillsQueryResponse>(GET_SKILLS, {
-    variables: { first: 8, page: currentPage },
+    variables: { first: 8, page: currentPage, is_featured: true},
   });
 
   if (error) return <p>Error loading skills</p>;

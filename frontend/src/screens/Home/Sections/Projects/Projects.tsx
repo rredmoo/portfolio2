@@ -32,7 +32,7 @@ export default function Projects() {
   const { data, loading, error } = useQuery<ProjectQueryResponse>(
     GET_PROJECTS,
     {
-      variables: { first: 3, page: currentPage },
+      variables: { first: 3, page: currentPage, is_featured: true,}
     },
   );
 

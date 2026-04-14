@@ -4,7 +4,7 @@ import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { getSkill, updateSkill } from "../../../api/skills";
 import type { Skill } from "../../../api/types";
-import { FormField, FormInput, FormLabel, FormWrapper, SubmitButton } from "../Components/DataForms.styled";
+import { CheckboxRow, FormField, FormInput, FormLabel, FormWrapper, SubmitButton } from "../Components/DataForms.styled";
 
 export default function EditSkill() {
   const { id } = useParams();
@@ -25,13 +25,19 @@ export default function EditSkill() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
 
     setSkill((prev) =>
       prev
         ? {
           ...prev,
-          [name]: name === "level" ? Number(value) : value,
+          [name]:
+            type === "checkbox"
+              ? checked
+              : name === "level"
+                ? Number(value)
+                : value,
         }
         : prev,
     );
@@ -83,6 +89,16 @@ export default function EditSkill() {
               onChange={handleChange}
             />
           </FormField>
+
+          <CheckboxRow>
+            <input
+              type="checkbox"
+              name="is_featured"
+              checked={skill.is_featured}
+              onChange={handleChange}
+            />
+            <FormLabel>Feature in portfolio?</FormLabel>
+          </CheckboxRow>
 
           <SubmitButton type="submit">
             Save

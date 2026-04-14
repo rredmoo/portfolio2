@@ -2,7 +2,7 @@ import { useState } from "react";
 import { MainAdminContainer, AdminLayout } from "../Components/AdminLayout";
 import Sidebar from "../Components/Sidebar";
 import { createSkill } from "../../../api/skills";
-import { FormField, FormInput, FormLabel, FormWrapper, SubmitButton } from "../Components/DataForms.styled";
+import { CheckboxRow, FormField, FormInput, FormLabel, FormWrapper, SubmitButton } from "../Components/DataForms.styled";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateSkill() {
@@ -11,6 +11,7 @@ export default function CreateSkill() {
     title: "",
     category: "",
     level: 1,
+    is_featured: false,
   });
 
   const navigate = useNavigate();
@@ -27,16 +28,23 @@ export default function CreateSkill() {
       formData.append("image", image);
     }
 
+    formData.append("is_featured", skill.is_featured ? "1" : "0");
+
     await createSkill(formData);
     navigate("/admin/skills");
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type, checked } = e.target;
 
     setSkill((prev) => ({
       ...prev,
-      [name]: name === "level" ? Number(value) : value,
+      [name]:
+        type === "checkbox"
+          ? checked
+          : name === "level"
+            ? Number(value)
+            : value,
     }));
   };
 
@@ -88,6 +96,16 @@ export default function CreateSkill() {
                 }
               />
             </FormField>
+
+            <CheckboxRow>
+              <input
+                type="checkbox"
+                name="is_featured"
+                checked={skill.is_featured}
+                onChange={handleChange}
+              />
+              <FormLabel>Feature it?</FormLabel>
+            </CheckboxRow>
 
             <SubmitButton type="submit">
               Submit

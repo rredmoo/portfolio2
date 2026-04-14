@@ -1,13 +1,14 @@
 import { gql } from "@apollo/client";
 
 export const GET_SKILLS = gql`
-  query GetSkills($first: Int!, $page: Int!) {
-    skills(first: $first, page: $page) {
+  query GetSkills($first: Int!, $page: Int!, $is_featured: Boolean) {
+    skills(first: $first, page: $page, is_featured: $is_featured) {
       data {
         id
         title
         category
         level
+        is_featured
       }
       paginatorInfo {
         currentPage
