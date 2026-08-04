@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ResumeBackground = styled.div`
   position: relative;
   width: 100%;
-  min-height: 80vh;
+  min-height: 60vh;
   overflow: hidden;
   background-color: var(--bg-dark);
 
