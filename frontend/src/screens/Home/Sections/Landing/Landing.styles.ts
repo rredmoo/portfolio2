@@ -50,6 +50,7 @@ export const LandingContent = styled.div`
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+  text-align: center;
   padding: clamp(80px, 12vh, 120px) 24px 0 24px;
 
   @media (max-width: 768px) {
@@ -57,6 +58,7 @@ export const LandingContent = styled.div`
   }
 
   .topLable {
+    margin-top: 30%;
     letter-spacing: 2px;
     font-size: 14px;
     color: var(--color-text-light-white);
@@ -70,7 +72,7 @@ export const LandingContent = styled.div`
     color: var(--color-text);
 
     span {
-      background: linear-gradient(90deg, rgb(53 17 75), #8b5cf6);
+      background: linear-gradient(180deg, rgb(255 255 255), #475d84);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -79,7 +81,6 @@ export const LandingContent = styled.div`
   .subtext {
     // welcome to my portfolio text
     margin-top: 16px;
-    max-width: 480px;
     font-size: clamp(14px, 4vw, 18px);
     color: rgba(255, 255, 255, 0.75);
   }
